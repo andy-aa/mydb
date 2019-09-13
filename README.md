@@ -29,12 +29,12 @@ use TexLab\LightDB\DbEntity;
 
 $table1 = new DbEntity('table1', new \mysqli('localhost', 'root', '', 'mydb'));
 
-
+echo json_encode($table1->get());
 ```
 
 ### CRUD
 ```php
-echo json_encode($table1->get());
+$table1->get();
 
 $table1->add([
     'name' => 'Peter',
