@@ -1,5 +1,12 @@
 # lightdb
 
+### Install via composer
+
+```
+$ composer require texlab/lightdb
+```
+
+
 ```php
 <?php
 
@@ -9,6 +16,6 @@ use TexLab\LightDB\DbEntity;
 
 $table1 = new DbEntity('table1', new \mysqli('localhost', 'root', '', 'mydb'));
 
-print_r($table1->get());
+echo json_encode($table1->get());
 
 ```
