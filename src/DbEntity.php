@@ -4,7 +4,7 @@ namespace TexLab\LightDB;
 
 use mysqli;
 
-abstract class AbstractDbEntity implements DbEntityInterface
+class DbEntity implements DbEntityInterface
 {
     use DbEntityPageTrait,
         DbEntitySettersTrait,
@@ -78,7 +78,9 @@ abstract class AbstractDbEntity implements DbEntityInterface
         return $queryResult;
     }
 
-    abstract protected function errorHandler(array $error);
+    protected function errorHandler(array $error)
+    {
+    }
 
     public function clearQuery()
     {

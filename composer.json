@@ -1,10 +1,11 @@
 {
   "name": "texlab/lightdb",
-  "description": "The lightweight PHP MySql database framework",
+  "description": "The lightweight MySql database framework",
   "license": "MIT",
   "require": {
     "php": "^7.2",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "psr-4": {
