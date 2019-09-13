@@ -23,14 +23,30 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ### Usage example
 
 ```php
-<?php
-
 require 'vendor/autoload.php';
 
 use TexLab\LightDB\DbEntity;
 
 $table1 = new DbEntity('table1', new \mysqli('localhost', 'root', '', 'mydb'));
 
+
+```
+
+### CRUD
+```php
 echo json_encode($table1->get());
 
+$table1->add([
+    'name' => 'Peter',
+    'description' => 'Director'
+]);
+
+$table1->add([
+    'name' => 'Alex',
+    'description' => 'Manager'
+]);
+
+$table1->edit(2, ['description' => 'Driver']);
+
+$table1->del(1);
 ```
