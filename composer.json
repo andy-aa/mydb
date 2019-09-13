@@ -1,0 +1,9 @@
+{
+  "name": "TexLab/LightDB",
+  "description": "The lightweight PHP MySql database framework",
+  "license": "MIT",
+  "require": {
+    "php": "^7.2",
+    "ext-mysqli": "*"
+  }
+}
