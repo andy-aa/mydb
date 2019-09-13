@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-
-
+### Usage example
 
 ```php
 <?php
