@@ -4,8 +4,6 @@ namespace TexLab\LightDB;
 
 interface DbEntityInterface
 {
-    public function getSQL(): string;
-
     public function get(): array;
 
     public function getRowById(int $id): array;

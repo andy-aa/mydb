@@ -93,7 +93,7 @@ class DbEntity implements DbEntityInterface
         return $this->runSQL($this->getSQL());
     }
 
-    public function getSQL(): string
+    protected function getSQL(): string
     {
         $sql = '';
 
