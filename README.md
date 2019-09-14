@@ -140,3 +140,16 @@ Array
     [sql] => SELECT * FROM unknown_table
 )
 ```
+## Pagination
+
+```php
+echo $table1->setPageSize(2)->pageCount();
+```
+
+```php
+echo json_encode($table1->setPageSize(2)->getPage(1));
+```
+
+
+
+
