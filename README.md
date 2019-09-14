@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ## Usage example
 
 ```php
+<?php
+
 require 'vendor/autoload.php';
 
 use TexLab\LightDB\DbEntity;
@@ -58,3 +60,37 @@ Data deletion:
 ```php
 $table1->del(1);
 ```
+## Custom queries
+
+```php
+echo json_encode($table1->runSQL("SELECT * FROM table1"));
+```
+
+```php
+echo json_encode(
+    $table1
+        ->reset()
+        ->setSelect('id, name')
+        ->setWhere("name like 'A%'")
+        ->get()
+);
+```
+
+```php
+$table1
+    ->reset()
+    ->setSelect('name, description')
+    ->setWhere("description = 'Manager'")
+    ->setOrderBy('name');
+
+echo json_encode(
+    $table1->get()
+);
+
+$table1->setSelect('*');
+
+echo json_encode(
+    $table1->get()
+);
+```
+## Error handling
