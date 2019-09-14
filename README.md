@@ -34,12 +34,12 @@ echo json_encode($table1->get());
 
 ### CRUD
 ```php
-$table1->get();
-
 $table1->add([
     'name' => 'Peter',
     'description' => 'Director'
 ]);
+
+$table1->get();
 
 $table1->add([
     'name' => 'Alex',
