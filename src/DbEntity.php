@@ -82,12 +82,6 @@ class DbEntity implements DbEntityInterface
     {
     }
 
-    public function clearQuery()
-    {
-        $this->queryCustom = ['FROM' => $this->tableName];
-        return $this;
-    }
-
     public function getRowById(int $id): array
     {
         $this->queryCustom['WHERE'] = "$this->primaryKey=$id";

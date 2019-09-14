@@ -12,6 +12,11 @@ trait DbEntitySettersTrait
 //        }
 //    }
 
+    public function reset()
+    {
+        $this->queryCustom = ['FROM' => $this->tableName];
+        return $this;
+    }
 
     public function setSelect(string $sql)
     {
