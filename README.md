@@ -64,6 +64,7 @@ $table1->del(1);
 echo json_encode(
     $table1
         ->reset()
+        ->setSelect('name, description')
         ->setWhere("description = 'Manager'")
         ->setOrderBy('name')
         ->get()
