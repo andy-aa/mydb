@@ -58,3 +58,14 @@ Data deletion:
 ```php
 $table1->del(1);
 ```
+## Custom queries
+
+```php
+echo json_encode(
+    $table1
+        ->reset()
+        ->setWhere("description = 'Manager'")
+        ->setOrderBy('name')
+        ->get()
+);
+```
