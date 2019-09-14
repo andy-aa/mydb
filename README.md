@@ -49,7 +49,10 @@ $table1->get();
 
 ### updating data
 ```php
-$table1->edit(2, ['description' => 'Manager']);
+$table1->edit(2, [
+    'name' => 'Alex',
+    'description' => 'Manager'
+]);
 ```
 
 ### data deletion
