@@ -1,6 +1,13 @@
 {
   "name": "texlab/lightdb",
   "description": "The lightweight MySql database framework",
+  "keywords": [
+    "php",
+    "orm",
+    "mysql",
+    "object",
+    "data"
+  ],
   "license": "MIT",
   "require": {
     "php": "^7.2",
