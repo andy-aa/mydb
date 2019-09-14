@@ -4,11 +4,11 @@ namespace TexLab\LightDB;
 
 interface DbEntityInterface
 {
+    public function runSQL(string $sql): array;
+
     public function get(): array;
 
     public function getRowById(int $id): array;
-
-    public function runSQL(string $sql): array;
 
     public function add(array $data): int;
 
