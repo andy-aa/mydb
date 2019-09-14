@@ -1,12 +1,12 @@
 # lightdb
 
-### Install via composer
+## Install via composer
 
 ```
 $ composer require texlab/lightdb
 ```
 
-### Database for examples
+## Database for examples
 ```sql
 CREATE DATABASE IF NOT EXISTS `mydb`;
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-### Usage example
+## Usage example
 
 ```php
 require 'vendor/autoload.php';
@@ -32,21 +32,27 @@ $table1 = new DbEntity('table1', new \mysqli('localhost', 'root', '', 'mydb'));
 echo json_encode($table1->get());
 ```
 
-### CRUD
+## CRUD
+
+### adding data
 ```php
 $table1->add([
     'name' => 'Peter',
     'description' => 'Director'
 ]);
+```
 
+### reading data
+```php
 $table1->get();
+```
 
-$table1->add([
-    'name' => 'Alex',
-    'description' => 'Manager'
-]);
+### updating data
+```php
+$table1->edit(2, ['description' => 'Manager']);
+```
 
-$table1->edit(2, ['description' => 'Driver']);
-
+### data deletion
+```php
 $table1->del(1);
 ```
