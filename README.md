@@ -131,3 +131,12 @@ $table1 = new DBTable(
 
 echo json_encode($table1->runSQL("SELECT * FROM unknown_table"));
 ```
+Result:
+```
+Array
+(
+    [errno] => 1146
+    [error] => Table 'mydb.unknown_table' doesn't exist
+    [sql] => SELECT * FROM unknown_table
+)
+```
