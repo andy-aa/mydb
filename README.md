@@ -33,8 +33,7 @@ echo json_encode($table1->get());
 ```
 
 ## CRUD
-
-### adding data
+adding data
 ```php
 $table1->add([
     'name' => 'Peter',
@@ -42,12 +41,12 @@ $table1->add([
 ]);
 ```
 
-### reading data
+reading data
 ```php
 $table1->get();
 ```
 
-### updating data
+updating data
 ```php
 $table1->edit(2, [
     'name' => 'Alex',
@@ -55,7 +54,7 @@ $table1->edit(2, [
 ]);
 ```
 
-### data deletion
+data deletion
 ```php
 $table1->del(1);
 ```
