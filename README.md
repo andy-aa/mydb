@@ -115,7 +115,7 @@ class DBTable extends DbEntity
     protected function errorHandler(array $error)
     {
         //put your error handling code here
-        echo json_encode($error);
+        print_r($error);
     }
 }
 
@@ -129,7 +129,7 @@ $table1 = new DBTable(
     )
 );
 
-echo json_encode($table1->runSQL("SELECT * FROM unknown_table"));
+$table1->runSQL("SELECT * FROM unknown_table");
 ```
 Result:
 ```
