@@ -29,7 +29,15 @@ require 'vendor/autoload.php';
 
 use TexLab\LightDB\DbEntity;
 
-$table1 = new DbEntity('table1', new \mysqli('localhost', 'root', '', 'mydb'));
+$table1 = new DbEntity(
+    'table1',
+    new \mysqli(
+        'localhost',
+        'root',
+        '',
+        'mydb'
+    )
+);
 
 echo json_encode($table1->get());
 ```
@@ -94,3 +102,41 @@ echo json_encode(
 );
 ```
 ## Error handling
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use TexLab\LightDB\DbEntity;
+
+class DBTable extends DbEntity
+{
+    protected function errorHandler(array $error)
+    {
+        //put your error handling code here
+        print_r($error);
+    }
+}
+
+$table1 = new DBTable(
+    'table1',
+    new \mysqli(
+        'localhost',
+        'root',
+        '',
+        'mydb'
+    )
+);
+
+$table1->runSQL("SELECT * FROM unknown_table");
+```
+Result:
+```
+Array
+(
+    [errno] => 1146
+    [error] => Table 'mydb.unknown_table' doesn't exist
+    [sql] => SELECT * FROM unknown_table
+)
+```
