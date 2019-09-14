@@ -27,6 +27,6 @@ trait DbEntityPageTrait
 
     public function pageCount(): int
     {
-        return ceil($this->rowCount() / $this->pageSize);
+        return (int) ceil($this->rowCount() / $this->pageSize);
     }
 }
