@@ -64,9 +64,26 @@ $table1->del(1);
 echo json_encode(
     $table1
         ->reset()
-        ->setSelect('name, description')
-        ->setWhere("description = 'Manager'")
-        ->setOrderBy('name')
+        ->setSelect('id, name')
+        ->setWhere("name like 'A%'")
         ->get()
+);
+```
+
+```php
+$table1
+    ->reset()
+    ->setSelect('name, description')
+    ->setWhere("description = 'Manager'")
+    ->setOrderBy('name');
+
+echo json_encode(
+    $table1->get()
+);
+
+$table1->setSelect('*');
+
+echo json_encode(
+    $table1->get()
 );
 ```
