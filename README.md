@@ -94,3 +94,32 @@ echo json_encode(
 );
 ```
 ## Error handling
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use TexLab\LightDB\DbEntity;
+
+class DBTable extends DbEntity
+{
+    protected function errorHandler(array $error)
+    {
+        //put your error handling code here
+        echo json_encode($error);
+    }
+}
+
+$table1 = new DBTable(
+    'table1',
+    new \mysqli(
+        'localhost',
+        'root',
+        '',
+        'mydb'
+    )
+);
+
+echo json_encode($table1->runSQL("SELECT * FROM unknown_table"));
+```
