@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ## Usage example
 
 ```php
+<?php
+
 require 'vendor/autoload.php';
 
 use TexLab\LightDB\DbEntity;
