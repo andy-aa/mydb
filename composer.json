@@ -1,5 +1,6 @@
 {
   "name": "texlab/lightdb",
+  "type": "library",
   "description": "The lightweight MySql database framework",
   "keywords": [
     "php",
