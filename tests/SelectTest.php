@@ -34,7 +34,10 @@ class SelectTest extends TestCase
         );
 
         $this->assertIsInt(
-            $id = $this->table->add(['name' => 'Alex', 'description' => 'Manager'])
+            $id = $this->table->add([
+                'name' => 'Alex',
+                'description' => 'Manager'
+            ])
         );
 
         $this->assertEquals(
@@ -55,7 +58,8 @@ class SelectTest extends TestCase
             $this->table->get($id)
         );
 
-        $this->assertIsInt(
+        $this->assertEquals(
+            1,
             $this->table->del($id)
         );
 
@@ -63,6 +67,7 @@ class SelectTest extends TestCase
             [],
             $this->table->get($id)
         );
+
     }
 
 }
