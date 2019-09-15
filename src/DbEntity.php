@@ -82,27 +82,32 @@ class DbEntity implements DbEntityInterface
     {
     }
 
-    public function getRowById(int $id): array
+    protected function getRowById(int $id): array
     {
-        $this->queryCustom['WHERE'] = "$this->primaryKey=$id";
-        return array_diff_key($this->get()[0], [$this->primaryKey => null]);
+        $bufWHERE = $this->queryCustom['WHERE'];
+
+        $this->queryCustom['WHERE'] = (empty($bufWHERE) ? '' : 'AND ') . "$this->primaryKey = $id";
+
+        $result = array_diff_key(
+            (array)($this->runSQL($this->getSQL())[0]),
+            [$this->primaryKey => null]
+        );
+
+        $this->queryCustom['WHERE'] = $bufWHERE;
+
+        return $result;
     }
 
     public function get(int $id = null): array
     {
+
         if (is_null($id)) {
-
-            return $this->runSQL($this->getSQL());
-
+            $result = $this->runSQL($this->getSQL());
         } else {
-
-            $this->queryCustom['WHERE'] = "$this->primaryKey=$id";
-            return array_diff_key(
-                (array)($this->runSQL($this->getSQL())[0]),
-                [$this->primaryKey => null]
-            );
-
+            $result = $this->getRowById($id);
         }
+
+        return $result;
 
     }
 

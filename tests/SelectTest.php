@@ -70,4 +70,32 @@ class SelectTest extends TestCase
 
     }
 
+    function testGet()
+    {
+        $this->assertIsArray(
+            $this->table->get()
+        );
+
+//        $id1 = $this->table->add([
+//            'name' => 'Alex',
+//            'description' => 'Manager'
+//        ]);
+//
+//        $id2 = $this->table->add([
+//            'name' => 'Peter',
+//            'description' => 'Director'
+//        ]);
+//
+//        $this->assertEquals(
+//            ['name' => 'Alex', 'description' => 'Manager'],
+//            $this->table->get($id1)
+//        );
+
+//        $this->assertEquals(
+//            ['id' => $id1, 'name' => 'Alex', 'description' => 'Manager'],
+//            $this->table->get()
+//        );
+
+    }
+
 }
