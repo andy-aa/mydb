@@ -23,12 +23,45 @@ class SelectTest extends TestCase
 
     /**
      * @covers DbEntity::get
+     * @covers DbEntity::add
+     * @covers DbEntity::edit
+     * @covers DbEntity::del
      */
-    function testSelect()
+    function testCRUD()
     {
         $this->assertIsArray(
-            $this->table->get(),
-            'Is not Array'
+            $this->table->get()
+        );
+
+        $this->assertIsInt(
+            $id = $this->table->add(['name' => 'Alex', 'description' => 'Manager'])
+        );
+
+        $this->assertEquals(
+            ['name' => 'Alex', 'description' => 'Manager'],
+            $this->table->get($id)
+        );
+
+        $this->assertEquals(
+            1,
+            $this->table->edit(
+                $id,
+                ['name' => 'Peter', 'description' => 'Director']
+            )
+        );
+
+        $this->assertEquals(
+            ['name' => 'Peter', 'description' => 'Director'],
+            $this->table->get($id)
+        );
+
+        $this->assertIsInt(
+            $this->table->del($id)
+        );
+
+        $this->assertEquals(
+            [],
+            $this->table->get($id)
         );
     }
 

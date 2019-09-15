@@ -91,11 +91,19 @@ class DbEntity implements DbEntityInterface
     public function get(int $id = null): array
     {
         if (is_null($id)) {
+
             return $this->runSQL($this->getSQL());
+
         } else {
+
             $this->queryCustom['WHERE'] = "$this->primaryKey=$id";
-            return array_diff_key($this->runSQL($this->getSQL())[0], [$this->primaryKey => null]);
+            return array_diff_key(
+                (array)($this->runSQL($this->getSQL())[0]),
+                [$this->primaryKey => null]
+            );
+
         }
+
     }
 
     protected function getSQL(): string
