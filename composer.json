@@ -1,7 +1,7 @@
 {
   "name": "texlab/lightdb",
   "type": "library",
-  "description": "The lightweight MySql database framework",
+  "description": "The lightweight MySql database library",
   "keywords": [
     "php",
     "orm",
@@ -13,6 +13,9 @@
   "require": {
     "php": "^7.2",
     "ext-mysqli": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
   },
   "autoload": {
     "psr-4": {
