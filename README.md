@@ -78,6 +78,7 @@ $table1->del(1);
 ```php
 echo json_encode($table1->runSQL("SELECT * FROM table1"));
 ```
+## Query builder
 
 ```php
 echo json_encode(
