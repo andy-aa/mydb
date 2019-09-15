@@ -1,11 +1,4 @@
 <?php
-/**
- * from phpunit.xml
- * @var string $mysql_db
- * @var string $mysql_host
- * @var string $mysql_user
- * @var string $mysql_pass
- */
 
 declare(strict_types=1);
 
@@ -14,27 +7,28 @@ use TexLab\LightDB\DbEntity;
 
 class SelectTest extends TestCase
 {
+    protected $table;
 
-    function testSelect()
+    protected function setUp(): void
     {
-        global $mysql_db,
-               $mysql_host,
-               $mysql_user,
-               $mysql_pass,
-               $mysql_test_table;
-
-        $table = new DbEntity($mysql_test_table,
+        $this->table = new DbEntity($GLOBALS['mysql_test_table'],
             new mysqli(
-                $mysql_host,
-                $mysql_user,
-                $mysql_pass,
-                $mysql_db
+                $GLOBALS['mysql_host'],
+                $GLOBALS['mysql_user'],
+                $GLOBALS['mysql_pass'],
+                $GLOBALS['mysql_db']
             )
         );
+    }
 
+    /**
+     * @covers DbEntity::get
+     */
+    function testSelect()
+    {
         $this->assertIsArray(
-            $table->get(),
-            'Is not Object'
+            $this->table->get(),
+            'Is not Array'
         );
     }
 
