@@ -36,7 +36,6 @@ class SelectTest extends TestCase
             $table->get(),
             'Is not Object'
         );
-
     }
 
 }
