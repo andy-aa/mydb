@@ -4,11 +4,11 @@ namespace TexLab\LightDB;
 
 use mysqli;
 
-class DbEntity implements DbEntityInterface
+class DbEntity implements CRUDInterface
 {
-    use DbEntityPageTrait,
-        DbEntitySettersTrait,
-        DbEntityPropertiesTrait;
+    use PaginationTrait,
+        QueryBuilderTrait,
+        PropertiesTrait;
 
     protected $tableName;
     protected $mysqli;
@@ -40,10 +40,6 @@ class DbEntity implements DbEntityInterface
         return $this;
     }
 
-    private function seekPrimaryKeyName(string $tableName): ?string
-    {
-        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'];
-    }
 
     public function runSQL(string $sql): array
     {
@@ -66,7 +62,7 @@ class DbEntity implements DbEntityInterface
     protected function query(string $sql)
     {
         $queryResult = $this->mysqli->query($sql);
-//        echo $sql;
+
         if ($this->mysqli->errno) {
             $this->errorHandler([
                 'errno' => $this->mysqli->errno,
@@ -159,6 +155,11 @@ class DbEntity implements DbEntityInterface
     public function getPrimaryKey(): ?string
     {
         return $this->primaryKey;
+    }
+
+    private function seekPrimaryKeyName(string $tableName): ?string
+    {
+        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'];
     }
 
 }

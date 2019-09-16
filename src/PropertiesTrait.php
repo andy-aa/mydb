@@ -2,7 +2,7 @@
 
 namespace TexLab\LightDB;
 
-trait DbEntityPropertiesTrait
+trait PropertiesTrait
 {
     public function getColumnsNames(): array
     {

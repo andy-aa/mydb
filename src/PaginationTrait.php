@@ -2,7 +2,7 @@
 
 namespace TexLab\LightDB;
 
-trait DbEntityPageTrait
+trait PaginationTrait
 {
     protected $pageSize;
 

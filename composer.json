@@ -23,7 +23,8 @@
     }
   },
   "scripts": {
-    "test": "phpunit --testsuite alltests"
+    "test": "phpunit --testsuite alltests",
+    "doc": "phpdoc "
   },
   "archive": {
     "exclude": [

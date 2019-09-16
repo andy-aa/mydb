@@ -2,7 +2,7 @@
 
 namespace TexLab\LightDB;
 
-trait DbEntitySettersTrait
+trait QueryBuilderTrait
 {
 
 //    public function setSQL(string $name, string $value)
