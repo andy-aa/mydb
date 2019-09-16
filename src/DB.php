@@ -18,22 +18,24 @@ class DB
 
     private static function new(array $options)
     {
-        $opt = array_merge(self::DEFAULT_OPTIONS, $options);
-
         return new mysqli(
-            $opt['host'],
-            $opt['username'],
-            $opt['password'],
-            $opt['dbname'],
-            $opt['port'],
-            $opt['socket']
+            $options['host'],
+            $options['username'],
+            $options['password'],
+            $options['dbname'],
+            $options['port'],
+            $options['socket']
         );
     }
 
     public static function Link(array $options)
     {
-        return self::$instances[$key = serialize($options)] ?? self::$instances[$key] = self::new($options);
+        return self::$instances[$key = serialize($options)] ?? self::$instances[$key] = self::new(
+            array_merge(
+                self::DEFAULT_OPTIONS,
+                $options
+            )
+            );
     }
-
 
 }
