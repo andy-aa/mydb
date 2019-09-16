@@ -1,12 +1,10 @@
 <?php
 
-
 namespace TexLab\LightDB;
-
 
 use mysqli;
 
-class DBLink
+class DB
 {
     private static $instances = [];
     private const DEFAULT_OPTIONS = [
