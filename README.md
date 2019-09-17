@@ -3,10 +3,11 @@
 
 # lightdb
 
+- [Install](#usage)
 - [Usage example](#usage)
 - [CRUD](#CRUD)
 
-## Install via composer
+## <a id="usage"></a> Install via composer
 
 ```
 $ composer require texlab/lightdb
