@@ -3,6 +3,11 @@
 
 # lightdb
 
+- [Install](#install-via-composer)
+- [Usage example](#usage-example)
+- [CRUD](#crud)
+- [Query builder](#query-builder)
+
 ## Install via composer
 
 ```
