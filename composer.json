@@ -23,8 +23,9 @@
     }
   },
   "scripts": {
+    "start": "php -S localhost:8080 -t tests/web",
     "test": "phpunit --testsuite alltests",
-    "doc": "phpdoc "
+    "settimeout ": "composer config --global process-timeout 2000"
   },
   "archive": {
     "exclude": [

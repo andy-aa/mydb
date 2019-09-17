@@ -34,8 +34,10 @@ class DbEntity implements CRUDInterface
 
     public function setTableName(string $tableName): self
     {
-        $this->queryCustom['FROM'] = $this->tableName = $tableName;
-        $this->primaryKey = $this->seekPrimaryKeyName($this->tableName);
+        if (!empty($tableName)) {
+            $this->queryCustom['FROM'] = $this->tableName = $tableName;
+            $this->primaryKey = $this->seekPrimaryKeyName($this->tableName);
+        }
 
         return $this;
     }
@@ -76,6 +78,7 @@ class DbEntity implements CRUDInterface
 
     protected function errorHandler(array $error)
     {
+//        die("MySql query error: \n" . join("\n", $error));
     }
 
     protected function getRowById(int $id): array

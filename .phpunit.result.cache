@@ -1,1 +1,0 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":157:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:3:{s:26:"DbConnectTest::testConnect";d:1.055;s:20:"SelectTest::testCRUD";d:0.796;s:19:"SelectTest::testGet";d:0.102;}}}

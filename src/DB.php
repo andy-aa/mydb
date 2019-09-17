@@ -16,9 +16,9 @@ class DB
         'socket' => null
     ];
 
-    private static function new(array $options)
+    private static function new(array $options): mysqli
     {
-        return new mysqli(
+        $mysqli = @new mysqli(
             $options['host'],
             $options['username'],
             $options['password'],
@@ -26,15 +26,27 @@ class DB
             $options['port'],
             $options['socket']
         );
+
+        if ($mysqli->connect_error) {
+            static::errorHandler(['connect_error' => $mysqli->connect_error]);
+        }
+
+        return $mysqli;
+
     }
 
-    public static function Link(array $options)
+    public static function errorHandler(array $error)
     {
-        return self::$instances[$key = serialize($options)] ?? self::$instances[$key] = self::new(
-            array_merge(
-                self::DEFAULT_OPTIONS,
-                $options
-            )
+        die("MySql connect error: $error[connect_error]");
+    }
+
+    public static function Link(array $options): mysqli
+    {
+        return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
+                array_merge(
+                    static::DEFAULT_OPTIONS,
+                    $options
+                )
             );
     }
 
