@@ -3,9 +3,9 @@
 
 # lightdb
 
-- [Install](#usage)
+- [Install](#-install-via-composer)
 - [Usage example](#usage)
-- [CRUD](#CRUD)
+- [CRUD]
 - [Query builder](#query-builder)
 
 ## <a id="usage"></a> Install via composer
