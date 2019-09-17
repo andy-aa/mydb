@@ -78,7 +78,7 @@ class DbEntity implements CRUDInterface
 
     protected function errorHandler(array $error)
     {
-//        die("MySql query error: \n" . join("\n", $error));
+        die("MySql query error: \n" . join("\n", $error));
     }
 
     protected function getRowById(int $id): array
