@@ -8,7 +8,7 @@
 - [CRUD](#-crud)
 - [Query builder](#query-builder)
 
-##Install via composer
+## Install via composer
 
 ```
 $ composer require texlab/lightdb
