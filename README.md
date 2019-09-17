@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-##<a id="usage"></a> Usage example
+## <a id="usage"></a> Usage example
 
 ```php
 <?php
@@ -48,7 +48,7 @@ $table1 = new DbEntity(
 echo json_encode($table1->get());
 ```
 
-##<a id="CRUD"></a> CRUD
+## <a id="CRUD"></a> CRUD
 ### Adding data:
 ```php
 $table1->add([
