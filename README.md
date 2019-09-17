@@ -6,6 +6,7 @@
 - [Install](#usage)
 - [Usage example](#usage)
 - [CRUD](#CRUD)
+- [Query builder](#query-builder)
 
 ## <a id="usage"></a> Install via composer
 
