@@ -4,9 +4,14 @@
 # lightdb
 
 - [Install](#install-via-composer)
+- [Database for examples](#database-for-examples)
 - [Usage example](#usage-example)
 - [CRUD](#crud)
 - [Query builder](#query-builder)
+- [Error handling](#error-handling)
+- [Pagination](#pagination)
+
+
 
 ## Install via composer
 
