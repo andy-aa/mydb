@@ -2,8 +2,8 @@
 
 require '../../vendor/autoload.php';
 
-use TexLab\LightDB\DB;
-use TexLab\LightDB\DbEntity;
+use TexLab\MyDB\DB;
+use TexLab\MyDB\DbEntity;
 
 
 $link = DB::Link([

@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use TexLab\LightDB\DB;
-use TexLab\LightDB\DbEntity;
+use TexLab\MyDB\DB;
+use TexLab\MyDB\DbEntity;
 
 
 class CRUDTest extends TestCase

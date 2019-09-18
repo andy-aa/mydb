@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `table1` (
 
 require 'vendor/autoload.php';
 
-use TexLab\LightDB\DbEntity;
+use TexLab\MyDB\DbEntity;
 
 $table1 = new DbEntity(
     'table1',
@@ -122,7 +122,7 @@ echo json_encode(
 
 require 'vendor/autoload.php';
 
-use TexLab\LightDB\DbEntity;
+use TexLab\MyDB\DbEntity;
 
 class DBTable extends DbEntity
 {

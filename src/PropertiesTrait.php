@@ -1,9 +1,14 @@
 <?php
 
-namespace TexLab\LightDB;
+namespace TexLab\MyDB;
 
 trait PropertiesTrait
 {
+    public function rowCount(): ?int
+    {
+        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
+    }
+
     public function getColumnsNames(): array
     {
         return array_column(

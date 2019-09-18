@@ -1,6 +1,6 @@
 <?php
 
-namespace TexLab\LightDB;
+namespace TexLab\MyDB;
 
 use mysqli;
 
@@ -148,11 +148,6 @@ class DbEntity implements CRUDInterface
         $this->query("UPDATE $this->tableName SET " . implode(", ", $fields_values) . " WHERE $this->primaryKey = $id;");
 
         return $this->mysqli->affected_rows;
-    }
-
-    public function rowCount(): ?int
-    {
-        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
     }
 
     public function getPrimaryKey(): ?string

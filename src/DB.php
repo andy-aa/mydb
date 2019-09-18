@@ -1,10 +1,19 @@
 <?php
 
-namespace TexLab\LightDB;
+namespace TexLab\MyDB;
 
 use mysqli;
 
-class DB
+/**
+ * Class DB
+ *
+ * The class implements a singleton pattern to
+ * create a new connection to the MySql server.
+ *
+ * @package TexLab\MyDB
+ */
+
+class DB implements DBInterface
 {
     private static $instances = [];
     private const DEFAULT_OPTIONS = [

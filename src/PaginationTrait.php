@@ -1,6 +1,6 @@
 <?php
 
-namespace TexLab\LightDB;
+namespace TexLab\MyDB;
 
 trait PaginationTrait
 {
