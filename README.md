@@ -45,16 +45,16 @@ CREATE TABLE IF NOT EXISTS `table1` (
 require 'vendor/autoload.php';
 
 use TexLab\MyDB\DbEntity;
+use TexLab\MyDB\DB;
 
-$table1 = new DbEntity(
-    'table1',
-    new \mysqli(
-        'localhost',
-        'root',
-        '',
-        'mydb'
-    )
-);
+$link = DB::Link([
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'dbname' => 'mydb'
+]);
+
+$table1 = new DbEntity('table1', $link);
 
 echo json_encode($table1->get());
 ```
