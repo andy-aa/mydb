@@ -73,30 +73,64 @@ SQL
 
         $this->assertEquals(
             ['name' => 'Alex', 'description' => 'Manager'],
-            $this->table->get($id)
+            $this->table->get(['id' => $id])
         );
 
         $this->assertEquals(
             1,
             $this->table->edit(
-                $id,
+                ['id' => $id],
                 ['name' => 'Peter', 'description' => 'Director']
             )
         );
 
         $this->assertEquals(
             ['name' => 'Peter', 'description' => 'Director'],
-            $this->table->get($id)
+            $this->table->get(['id' => $id])
         );
 
         $this->assertEquals(
             1,
-            $this->table->del($id)
+            $this->table->del(['id' => $id])
         );
 
         $this->assertEquals(
             [],
-            $this->table->get($id)
+            $this->table->get(['id' => $id])
+        );
+
+
+        $this->assertIsInt(
+            $id = $this->table->add([
+                'name' => 'Alex',
+                'description' => 'Manager'
+            ])
+        );
+
+        $this->assertEquals(
+            ['name' => 'Alex', 'description' => 'Manager'],
+            $this->table->get(['id' => $id, 'name' => 'Alex'])
+        );
+
+        $this->assertEquals(
+            0,
+            $this->table->edit(
+                ['name' => 'Peter', 'description' => 'Director'],
+                ['name' => 'Alex', 'description' => 'Manager']
+            )
+        );
+
+        $this->assertEquals(
+            1,
+            $this->table->edit(
+                ['name' => 'Alex', 'description' => 'Manager'],
+                ['name' => 'Peter', 'description' => 'Director']
+            )
+        );
+
+        $this->assertEquals(
+            1,
+            $this->table->del(['name' => 'Peter', 'description' => 'Director'])
         );
 
     }

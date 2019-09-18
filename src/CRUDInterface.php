@@ -6,9 +6,9 @@ interface CRUDInterface
 {
     public function add(array $data): int;
 
-    public function get(int $id = null): array;
+    public function get(array $conditions = []): array;
 
-    public function edit(int $id, array $data): int;
+    public function edit(array $conditions, array $data): int;
 
-    public function del(int $id): int;
+    public function del(array $conditions): int;
 }

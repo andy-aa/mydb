@@ -82,11 +82,11 @@ class DbEntity implements CRUDInterface
         throw new Exception("MySql query error: \n" . join("\n", $error));
     }
 
-    protected function getRowById(int $id): array
+    protected function getRowById(array $conditions): array
     {
         $bufWHERE = $this->queryCustom['WHERE'];
 
-        $this->queryCustom['WHERE'] = (empty($bufWHERE) ? '' : 'AND ') . "$this->primaryKey = $id";
+        $this->queryCustom['WHERE'] .= (empty($bufWHERE) ? '' : 'AND ') . $this->createWhereCondition($conditions);
 
         $result = array_diff_key(
             (array)($this->runSQL($this->getSQL())[0]),
@@ -98,13 +98,13 @@ class DbEntity implements CRUDInterface
         return $result;
     }
 
-    public function get(int $id = null): array
+    public function get(array $conditions = []): array
     {
 
-        if (is_null($id)) {
+        if (empty($conditions)) {
             $result = $this->runSQL($this->getSQL());
         } else {
-            $result = $this->getRowById($id);
+            $result = $this->getRowById($conditions);
         }
 
         return $result;
@@ -132,21 +132,33 @@ class DbEntity implements CRUDInterface
         return $this->mysqli->insert_id;
     }
 
-    public function del(int $id): int
+    private function createWhereCondition(array $conditions): string
     {
-        $this->query("DELETE FROM $this->tableName WHERE $this->primaryKey = $id");
+        $arrayConditions = [];
+
+        foreach ($conditions as $field => $value) {
+            $arrayConditions[] = "$field = '$value'";
+        }
+
+        return join(' AND ', $arrayConditions);
+    }
+
+    public function del(array $conditions): int
+    {
+        $this->query("DELETE FROM $this->tableName WHERE " . $this->createWhereCondition($conditions) . ';');
 
         return $this->mysqli->affected_rows;
     }
 
-    public function edit(int $id, array $data): int
+    public function edit(array $conditions, array $data): int
     {
         $fields_values = [];
         foreach ($data as $k => $v) {
             $fields_values[] = "$k = '$v'";
         }
 
-        $this->query("UPDATE $this->tableName SET " . implode(", ", $fields_values) . " WHERE $this->primaryKey = $id;");
+        $this->query("UPDATE $this->tableName SET " . implode(", ", $fields_values) .
+            " WHERE " . $this->createWhereCondition($conditions) . ';');
 
         return $this->mysqli->affected_rows;
     }
