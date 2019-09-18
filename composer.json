@@ -1,5 +1,5 @@
 {
-  "name": "texlab/lightdb",
+  "name": "texlab/mydb",
   "type": "library",
   "description": "The lightweight MySql database library",
   "keywords": [
