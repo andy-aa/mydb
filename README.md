@@ -132,6 +132,7 @@ echo json_encode(
 require 'vendor/autoload.php';
 
 use TexLab\MyDB\DbEntity;
+use TexLab\MyDB\DB;
 
 class DBTable extends DbEntity
 {
@@ -142,15 +143,15 @@ class DBTable extends DbEntity
     }
 }
 
-$table1 = new DBTable(
-    'table1',
-    new \mysqli(
-        'localhost',
-        'root',
-        '',
-        'mydb'
-    )
-);
+
+$link = DB::Link([
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'dbname' => 'mydb'
+]);
+
+$table1 = new DBTable('table1', $link);
 
 $table1->runSQL("SELECT * FROM unknown_table");
 ```
