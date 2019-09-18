@@ -2,6 +2,7 @@
 
 namespace TexLab\MyDB;
 
+use Exception;
 use mysqli;
 
 /**
@@ -12,7 +13,6 @@ use mysqli;
  *
  * @package TexLab\MyDB
  */
-
 class DB implements DBInterface
 {
     private static $instances = [];
@@ -46,7 +46,7 @@ class DB implements DBInterface
 
     public static function errorHandler(array $error)
     {
-        die("MySql connect error: $error[connect_error]");
+        throw new Exception("MySql connect error:" . $error['connect_error']);
     }
 
     public static function Link(array $options): mysqli

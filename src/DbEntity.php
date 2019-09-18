@@ -2,6 +2,7 @@
 
 namespace TexLab\MyDB;
 
+use Exception;
 use mysqli;
 
 class DbEntity implements CRUDInterface
@@ -78,7 +79,7 @@ class DbEntity implements CRUDInterface
 
     protected function errorHandler(array $error)
     {
-        die("MySql query error: \n" . join("\n", $error));
+        throw new Exception("MySql query error: \n" . join("\n", $error));
     }
 
     protected function getRowById(int $id): array
