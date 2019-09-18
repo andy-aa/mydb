@@ -75,12 +75,12 @@ $table1->get();
 or a row with the given id
 
 ```php
-$table1->get(3);
+$table1->get(['id' => 3]);
 ```
 
 ### Updating data:
 ```php
-$table1->edit(2, [
+$table1->edit(['id' => 2], [
     'name' => 'Alex',
     'description' => 'Manager'
 ]);
@@ -88,7 +88,7 @@ $table1->edit(2, [
 
 ### Data deletion:
 ```php
-$table1->del(1);
+$table1->del(['id' => 1]);
 ```
 ## Custom queries
 

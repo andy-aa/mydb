@@ -5,6 +5,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
+use TexLab\MyDB\Runner;
 
 
 class CRUDTest extends TestCase
@@ -19,13 +20,13 @@ class CRUDTest extends TestCase
             'password' => $GLOBALS['mysql_pass']
         ]);
 
-        $this->table = new DbEntity('', $link);
+        $runner = new Runner($link);
 
-        $this->table->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;");
-        $this->table->runSQL("USE `$GLOBALS[mysql_db]`;");
+        $runner->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;");
+        $runner->runSQL("USE `$GLOBALS[mysql_db]`;");
 
 
-        $this->table->runSQL(<<<SQL
+        $runner->runSQL(<<<SQL
 CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -34,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SQL
         );
-
 
         $link = DB::Link([
             'host' => $GLOBALS['mysql_host'],
@@ -72,7 +72,7 @@ SQL
         $this->assertEquals(1, $id);
 
         $this->assertEquals(
-            ['name' => 'Alex', 'description' => 'Manager'],
+            [0 => ['id' => $id, 'name' => 'Alex', 'description' => 'Manager']],
             $this->table->get(['id' => $id])
         );
 
@@ -85,7 +85,7 @@ SQL
         );
 
         $this->assertEquals(
-            ['name' => 'Peter', 'description' => 'Director'],
+            [0 => ['id' => $id, 'name' => 'Peter', 'description' => 'Director']],
             $this->table->get(['id' => $id])
         );
 
@@ -99,7 +99,6 @@ SQL
             $this->table->get(['id' => $id])
         );
 
-
         $this->assertIsInt(
             $id = $this->table->add([
                 'name' => 'Alex',
@@ -108,7 +107,7 @@ SQL
         );
 
         $this->assertEquals(
-            ['name' => 'Alex', 'description' => 'Manager'],
+            [0 => ['id' => $id, 'name' => 'Alex', 'description' => 'Manager']],
             $this->table->get(['id' => $id, 'name' => 'Alex'])
         );
 

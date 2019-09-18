@@ -4,9 +4,21 @@ namespace TexLab\MyDB;
 
 trait PropertiesTrait
 {
+//    protected $primaryKey = 'id';
+
+    public function getPrimaryKey(): ?string
+    {
+        return $this->seekPrimaryKeyName($this->tableName);
+    }
+
     public function rowCount(): ?int
     {
         return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
+    }
+
+    private function seekPrimaryKeyName(string $tableName): ?string
+    {
+        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'];
     }
 
     public function getColumnsNames(): array
