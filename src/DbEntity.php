@@ -2,7 +2,7 @@
 
 namespace TexLab\MyDB;
 
-class DbEntity extends CRUD
+class DbEntity extends Table
 {
     use PaginationTrait,
         QueryBuilderTrait,

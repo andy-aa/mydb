@@ -36,12 +36,12 @@ CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
 SQL
         );
 
-        $link = DB::Link([
-            'host' => $GLOBALS['mysql_host'],
-            'username' => $GLOBALS['mysql_user'],
-            'password' => $GLOBALS['mysql_pass'],
-            'dbname' => $GLOBALS['mysql_db']
-        ]);
+//        $link = DB::Link([
+//            'host' => $GLOBALS['mysql_host'],
+//            'username' => $GLOBALS['mysql_user'],
+//            'password' => $GLOBALS['mysql_pass'],
+//            'dbname' => $GLOBALS['mysql_db']
+//        ]);
 
         $this->table = new DbEntity(
             $GLOBALS['mysql_test_table'],

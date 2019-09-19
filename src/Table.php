@@ -4,13 +4,13 @@ namespace TexLab\MyDB;
 
 use mysqli;
 
-class CRUD extends Runner implements CRUDInterface
+class Table extends Runner implements CRUDInterface
 {
 
     protected $tableName;
 
     protected $queryCustom = [];
-    private $queryDefault = [
+    private const QUERY_DEFAULT = [
         'SELECT' => '*',
         'FROM' => '',
         'WHERE' => null,
@@ -53,7 +53,7 @@ class CRUD extends Runner implements CRUDInterface
     {
         $sql = '';
 
-        foreach (array_merge($this->queryDefault, $this->queryCustom) as $k => $v) {
+        foreach (array_merge(self::QUERY_DEFAULT, $this->queryCustom) as $k => $v) {
             if (!empty($v)) {
                 $sql .= "$k $v\n";
             }
