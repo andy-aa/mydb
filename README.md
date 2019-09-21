@@ -20,7 +20,7 @@
 ## Install via composer
 
 ```
-$ composer require texlab/lightdb
+$ composer require texlab/mydb
 ```
 
 ## Database for examples
