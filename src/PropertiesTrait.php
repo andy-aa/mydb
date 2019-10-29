@@ -56,6 +56,15 @@ trait PropertiesTrait
         return $array;
     }
 
+    public function getColumnsTypes(): array
+    {
+        $array = [];
+        foreach ($this->runSQL("SHOW FULL COLUMNS FROM $this->tableName;") as $row) {
+            $array[$row['Field']] = $row['Type'];
+        }
+        return $array;
+    }
+
     public function getColumnsPropertiesWithoutId(): array
     {
         return array_diff_key($this->getColumnsProperties(), [$this->getPrimaryKey() => null]);
