@@ -45,16 +45,26 @@ SQL
 
     /**
      * @covers DbEntity::getColumnsTypes
+     * @covers DbEntity::getColumnsTypesLength
      */
     function testCRUD()
     {
         $this->assertEquals(
             [
-                'id' => 'int(11)',
-                'name' => 'varchar(50)',
-                'description' => 'varchar(200)'
+                'id' => 'int',
+                'name' => 'varchar',
+                'description' => 'varchar'
             ],
             $this->table->getColumnsTypes()
+        );
+
+        $this->assertEquals(
+            [
+                'id' => '11',
+                'name' => '50',
+                'description' => '200'
+            ],
+            $this->table->getColumnsTypesLength()
         );
     }
 
