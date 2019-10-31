@@ -4,7 +4,7 @@ namespace TexLab\MyDB;
 
 trait PropertiesTrait
 {
-//    protected $primaryKey = 'id';
+    //    protected $primaryKey = 'id';
 
     public function getPrimaryKey(): ?string
     {
@@ -60,7 +60,17 @@ trait PropertiesTrait
     {
         $array = [];
         foreach ($this->runSQL("SHOW FULL COLUMNS FROM $this->tableName;") as $row) {
-            $array[$row['Field']] = $row['Type'];
+            $array[$row['Field']] = preg_replace('/\(.*\)/', '', $row['Type']);
+        }
+        return $array;
+    }
+
+    public function getColumnsTypesLength(): array
+    {
+        $array = [];
+        foreach ($this->runSQL("SHOW FULL COLUMNS FROM $this->tableName;") as $row) {
+            preg_match('/\((.*)\)/', $row['Type'], $matches);
+            $array[$row['Field']] = $matches[1];
         }
         return $array;
     }
@@ -69,5 +79,4 @@ trait PropertiesTrait
     {
         return array_diff_key($this->getColumnsProperties(), [$this->getPrimaryKey() => null]);
     }
-
 }
