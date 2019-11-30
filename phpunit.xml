@@ -17,6 +17,7 @@
 
     <php>
         <var name="mysql_db" value="unit_test_db"/>
+        <var name="mysql_db_order" value="unit_test_db_order"/>
         <var name="mysql_host" value="localhost"/>
         <var name="mysql_user" value="root"/>
         <var name="mysql_pass" value=""/>
