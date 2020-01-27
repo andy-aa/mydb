@@ -23,6 +23,10 @@
 $ composer require texlab/mydb
 ```
 
+## Class diagram
+![Class diagram](https://user-images.githubusercontent.com/46691193/73173964-abc3a380-4117-11ea-99b1-9424892a2fcd.png)
+![Class diagram](https://user-images.githubusercontent.com/46691193/73174260-5b991100-4118-11ea-8fff-eab60f969af9.png)
+
 ## Database for examples
 ```sql
 CREATE DATABASE IF NOT EXISTS `mydb`;
