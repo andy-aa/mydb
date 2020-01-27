@@ -4,6 +4,7 @@
 # MyDB
 
 - [Install](#install-via-composer)
+- [Class diagram](#class-diagram)
 - [Database for examples](#database-for-examples)
 - [Usage example](#usage-example)
 - [CRUD](#crud)
