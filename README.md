@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS `table1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
+![Database for examples](https://user-images.githubusercontent.com/46691193/73180546-8b4f1580-4126-11ea-85c8-e75731668e7a.png)
+
 ## Usage example
 
 ```php
