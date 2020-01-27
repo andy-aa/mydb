@@ -19,8 +19,17 @@
 
 ## Install via composer
 
+command line
 ```
 $ composer require texlab/mydb
+```
+Example composer.json file
+```
+{
+    "require": {
+        "texlab/mydb": "^0.0.4"
+    }
+}
 ```
 
 ## Class diagram
