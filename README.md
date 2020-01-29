@@ -22,7 +22,7 @@
 
 command line
 ```
-$ composer require texlab/mydb
+composer require texlab/mydb
 ```
 Example composer.json file
 ```
