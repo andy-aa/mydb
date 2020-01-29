@@ -20,11 +20,11 @@
 
 ## Install via composer
 
-command line
+Command line
 ```
 composer require texlab/mydb
 ```
-Example composer.json file
+Example **composer.json** file
 ```
 {
     "require": {
