@@ -4,6 +4,7 @@ namespace TexLab\MyDB;
 
 use Exception;
 use mysqli;
+use mysqli_result;
 
 class Runner implements RunnerInterface
 {
@@ -14,13 +15,18 @@ class Runner implements RunnerInterface
         $this->mysqli = $mysqli;
     }
 
+    /**
+     * @param string $sql
+     * @return array
+     * @throws Exception
+     */
     public function runSQL(string $sql): array
     {
         return $this->queryObjectToArray($this->query($sql));
     }
 
     /**
-     * @param \mysqli_result $queryResult
+     * @param mysqli_result $queryResult
      * @return array
      */
     protected function queryObjectToArray($queryResult): array
@@ -36,6 +42,11 @@ class Runner implements RunnerInterface
         return $tableResult;
     }
 
+    /**
+     * @param string $sql
+     * @return bool|mysqli_result
+     * @throws Exception
+     */
     protected function query(string $sql)
     {
         $queryResult = $this->mysqli->query($sql);
@@ -51,9 +62,13 @@ class Runner implements RunnerInterface
         return $queryResult;
     }
 
+    /**
+     * @param array $error
+     * @throws Exception
+     */
     protected function errorHandler(array $error)
     {
-        throw new Exception("MySql query error: \n" . join("\n", $error));
+        throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
     }
 
 }
