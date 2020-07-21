@@ -16,6 +16,7 @@ use mysqli;
 class DB implements DBInterface
 {
     private static $instances = [];
+
     private const DEFAULT_OPTIONS = [
         'host' => null,
         'username' => null,
@@ -25,6 +26,11 @@ class DB implements DBInterface
         'socket' => null
     ];
 
+    /**
+     * @param array $options
+     * @return mysqli
+     * @throws Exception
+     */
     private static function new(array $options): mysqli
     {
         $mysqli = @new mysqli(
@@ -37,18 +43,31 @@ class DB implements DBInterface
         );
 
         if ($mysqli->connect_error) {
-            static::errorHandler(['connect_error' => $mysqli->connect_error]);
+            static::errorHandler([
+                'connect_error' => $mysqli->connect_error
+            ]);
         }
 
         return $mysqli;
 
     }
 
+    /**
+     * @param array $error
+     * @throws Exception
+     */
     public static function errorHandler(array $error)
     {
-        throw new Exception("MySql connect error:" . $error['connect_error']);
+        throw new Exception(
+            "MySql connect error:" . $error['connect_error']
+        );
     }
 
+    /**
+     * @param array $options
+     * @return mysqli
+     * @throws Exception
+     */
     public static function Link(array $options): mysqli
     {
         return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(

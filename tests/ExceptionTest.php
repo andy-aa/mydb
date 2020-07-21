@@ -32,5 +32,16 @@ class ExceptionTest extends TestCase
         $this->table->runSQL("SELECT * FROM 123;");
     }
 
+    function testDbConnect()
+    {
+        $this->expectException("Exception");
+        $this->expectExceptionMessageRegExp('/Access denied/');
+
+        DB::Link([
+            'host' => $GLOBALS['mysql_host'],
+            'username' => $GLOBALS['mysql_user'],
+            'password' => '---------------------------------'
+        ]);
+    }
 
 }
