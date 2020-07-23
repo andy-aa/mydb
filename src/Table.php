@@ -64,11 +64,23 @@ class Table extends Runner implements CRUDInterface
 
     public function add(array $data): int
     {
+        $str = "'";
+        foreach ($data as $value) {
+            $str .= str_replace("'", "\'", $value) . "', '";
+        }
+        $str = substr_replace($str, '', strlen($str) - 3, 3);
         $this->query("INSERT INTO $this->tableName (" . implode(', ', array_keys($data)) .
-            ") VALUES('" . implode("', '", $data) . "');");
+            ") VALUES(" . $str . ");");
 
         return $this->mysqli->insert_id;
     }
+//    {
+//        $str = mysqli_real_escape_string($this->mysqli, implode("', '", $data));
+//        $this->query("INSERT INTO $this->tableName (" . implode(', ', array_keys($data)) .
+//            ") VALUES('" . $str . "');");
+//
+//        return $this->mysqli->insert_id;
+//    }
 
     private function createWhereCondition(array $conditions): string
     {
@@ -92,7 +104,9 @@ class Table extends Runner implements CRUDInterface
     {
         $fields_values = [];
         foreach ($data as $k => $v) {
-            $fields_values[] = "$k = '$v'";
+//            $fields_values[] = "$k = '$v'";
+            $s = str_replace("'", "\'", $v);
+            $fields_values[] = "$k = '$s'";
         }
 
         $this->query("UPDATE $this->tableName SET " . implode(", ", $fields_values) .

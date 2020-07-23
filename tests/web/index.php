@@ -1,6 +1,6 @@
 <?php
 
-require '../../vendor/autoload.php';
+//require '../../vendor/autoload.php';
 
 use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
@@ -9,16 +9,16 @@ use TexLab\MyDB\DbEntity;
 $link = DB::Link([
     'host' => 'localhost',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'dbname' => 'mydb'
 ]);
 
 $table1 = new DbEntity('table1', $link);
 
-//$table1->add([
-//    'name' => 'Peter',
-//    'description' => 'Director'
-//]);
+$table1->add([
+    'name' => "O'Conner",
+    'description' => 'Director'
+]);
 
 print_r($table1->get());
 
