@@ -37,8 +37,7 @@ class Table extends Runner implements CRUDInterface
 
             $bufWHERE = $this->queryCustom['WHERE'] ?? null;
 
-            $this->queryCustom['WHERE'] = (empty($bufWHERE) ? '' : 'AND ') . $this->createWhereCondition($conditions);
-//            $this->queryCustom['WHERE'] = $this->createWhereCondition($conditions);
+            $this->queryCustom['WHERE'] = (empty($bufWHERE) ? '' : "$bufWHERE AND ") . $this->createWhereCondition($conditions);
 
             $result = $this->runSQL($this->getSQL());
 
