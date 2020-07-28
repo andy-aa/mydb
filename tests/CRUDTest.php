@@ -14,7 +14,7 @@ class CRUDTest extends TestCase
 
     protected function setUp(): void
     {
-        $link = DB::Link([
+        $link = DB::link([
             'host' => $GLOBALS['mysql_host'],
             'username' => $GLOBALS['mysql_user'],
             'password' => $GLOBALS['mysql_pass']

@@ -6,7 +6,7 @@ use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
 
 
-$link = DB::Link([
+$link = DB::link([
     'host' => 'localhost',
     'username' => 'root',
     'password' => '',

@@ -8,5 +8,5 @@ interface DBInterface
 {
     public static function errorHandler(array $error);
 
-    public static function Link(array $options): mysqli;
+    public static function link(array $options): mysqli;
 }

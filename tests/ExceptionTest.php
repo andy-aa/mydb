@@ -14,7 +14,7 @@ class ExceptionTest extends TestCase
     protected function setUp(): void
     {
         $this->table = new Runner(
-            DB::Link([
+            DB::link([
                 'host' => $GLOBALS['mysql_host'],
                 'username' => $GLOBALS['mysql_user'],
                 'password' => $GLOBALS['mysql_pass']
@@ -37,7 +37,7 @@ class ExceptionTest extends TestCase
         $this->expectException("Exception");
         $this->expectWarningMessageMatches('/Access denied/');
 
-        DB::Link([
+        DB::link([
             'host' => $GLOBALS['mysql_host'],
             'username' => $GLOBALS['mysql_user'],
             'password' => '---------------------------------'

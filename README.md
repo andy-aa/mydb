@@ -63,7 +63,7 @@ require 'vendor/autoload.php';
 use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\DB;
 
-$link = DB::Link([
+$link = DB::link([
     'host' => 'localhost',
     'username' => 'root',
     'password' => '',
@@ -160,7 +160,7 @@ class DBTable extends DbEntity
 }
 
 
-$link = DB::Link([
+$link = DB::link([
     'host' => 'localhost',
     'username' => 'root',
     'password' => '',

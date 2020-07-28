@@ -67,7 +67,7 @@ class DB implements DBInterface
      * @return mysqli
      * @throws Exception
      */
-    public static function Link(array $options): mysqli
+    public static function link(array $options): mysqli
     {
         return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
             array_merge(
