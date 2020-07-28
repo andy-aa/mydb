@@ -43,10 +43,7 @@ SQL
         );
     }
 
-    /**
-     * @covers DbEntity::getColumnsTypes
-     * @covers DbEntity::getColumnsTypesLength
-     */
+
     function testCRUD()
     {
         $this->assertEquals(

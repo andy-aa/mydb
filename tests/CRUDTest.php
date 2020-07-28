@@ -50,12 +50,7 @@ SQL
 
     }
 
-    /**
-     * @covers DbEntity::get
-     * @covers DbEntity::add
-     * @covers DbEntity::edit
-     * @covers DbEntity::del
-     */
+
     function testCRUD()
     {
         $this->assertIsArray(
