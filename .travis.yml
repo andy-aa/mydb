@@ -1,5 +1,8 @@
 language: php
 
+services:
+  - mysql
+
 php:
   - "7.4"
 
@@ -7,8 +10,8 @@ install:
 #  - travis_retry composer require --no-update php-coveralls/php-coveralls
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
 
-#script:
-#  - php vendor/bin/phpunit --testsuite alltests
+script:
+  - php vendor/bin/phpunit --testsuite alltests
 
 after_success:
 #  - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
