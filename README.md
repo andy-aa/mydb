@@ -2,8 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
 [![Packagist](https://img.shields.io/packagist/vpre/texlab/mydb.svg?style=flat-square)](https://packagist.org/packages/texlab/mydb)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg?style=flat-square)](https://phpstan.org/)
-[![Psalm](https://img.shields.io/badge/Psalm-Level%20Max-brightgreen.svg?style=flat-square)](https://psalm.dev/) 
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%205-brightgreen.svg?style=flat-square)](https://phpstan.org/)
+[![Psalm](https://img.shields.io/badge/Psalm-Level%207-brightgreen.svg?style=flat-square)](https://psalm.dev/) 
 [![Coverage Status](https://img.shields.io/coveralls/github/andy-aa/mydb/master.svg?style=flat-square)](https://coveralls.io/github/andy-aa/mydb?branch=master)
 
 # MyDB

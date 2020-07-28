@@ -8,6 +8,9 @@ use mysqli_result;
 
 class Runner implements RunnerInterface
 {
+    /**
+     * @var mysqli
+     */
     protected $mysqli;
 
     public function __construct(mysqli $mysqli)
@@ -64,6 +67,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param array $error
+     * @return void
      * @throws Exception
      */
     protected function errorHandler(array $error)
