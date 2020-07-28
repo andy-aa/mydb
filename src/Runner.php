@@ -17,7 +17,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param string $sql
-     * @return array
+     * @return string[][]
      * @throws Exception
      */
     public function runSQL(string $sql): array
@@ -27,7 +27,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param mysqli_result $queryResult
-     * @return array
+     * @return string[][]
      */
     protected function queryObjectToArray($queryResult): array
     {

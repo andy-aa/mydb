@@ -15,6 +15,9 @@ use mysqli;
  */
 class DB implements DBInterface
 {
+    /**
+     * @var mysqli[]
+     */
     private static $instances = [];
 
     private const DEFAULT_OPTIONS = [
@@ -27,7 +30,7 @@ class DB implements DBInterface
     ];
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      * @return mysqli
      * @throws Exception
      */
@@ -52,10 +55,11 @@ class DB implements DBInterface
     }
 
     /**
-     * @param array $error
+     * @param string[] $error
+     * @return void
      * @throws Exception
      */
-    public static function errorHandler(array $error)
+    public static function errorHandler(array $error): void
     {
         throw new Exception(
             "MySql connect error:" . $error['connect_error']
@@ -63,17 +67,17 @@ class DB implements DBInterface
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      * @return mysqli
      * @throws Exception
      */
     public static function link(array $options): mysqli
     {
         return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
-            array_merge(
-                static::DEFAULT_OPTIONS,
-                $options
-            )
-        );
+                array_merge(
+                    static::DEFAULT_OPTIONS,
+                    $options
+                )
+            );
     }
 }
