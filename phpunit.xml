@@ -19,7 +19,7 @@
         <var name="mysql_db" value="unit_test_db"/>
         <var name="mysql_host" value="localhost"/>
         <var name="mysql_user" value="root"/>
-        <var name="mysql_pass" value="root"/>
+        <var name="mysql_pass" value=""/>
         <var name="mysql_test_table" value="test_table"/>
     </php>
 
