@@ -39,7 +39,7 @@ class Table extends Runner implements CRUDInterface
     }
 
     /**
-     * @param array<string, string> $conditions
+     * @param array<string, mixed> $conditions
      * @return string[][]
      * @throws Exception
      */
@@ -107,7 +107,7 @@ class Table extends Runner implements CRUDInterface
     }
 
     /**
-     * @param array<string, string> $conditions
+     * @param array<string, mixed> $conditions
      * @return int
      * @throws Exception
      */
@@ -119,7 +119,7 @@ class Table extends Runner implements CRUDInterface
     }
 
     /**
-     * @param array<string, string> $conditions
+     * @param array<string, mixed> $conditions
      * @param array<string, string> $data
      * @return int
      * @throws Exception

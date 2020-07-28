@@ -6,21 +6,34 @@ trait PropertiesTrait
 {
     //    protected $primaryKey = 'id';
 
+    /**
+     * @return string|null
+     */
     public function getPrimaryKey(): ?string
     {
         return $this->seekPrimaryKeyName($this->tableName);
     }
 
+    /**
+     * @return int|null
+     */
     public function rowCount(): ?int
     {
-        return $this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
+        return (int)$this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
     }
 
+    /**
+     * @param string $tableName
+     * @return string|null
+     */
     private function seekPrimaryKeyName(string $tableName): ?string
     {
-        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'];
+        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'] ?? null;
     }
 
+    /**
+     * @return string[]
+     */
     public function getColumnsNames(): array
     {
         return array_column(
@@ -29,6 +42,10 @@ trait PropertiesTrait
         );
     }
 
+    /**
+     * @param string $fieldName
+     * @return mixed[]
+     */
     public function getColumn(string $fieldName): array
     {
         return array_column(
@@ -38,6 +55,9 @@ trait PropertiesTrait
         );
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getColumnsComments(): array
     {
         return array_column(
@@ -47,6 +67,9 @@ trait PropertiesTrait
         );
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     public function getColumnsProperties(): array
     {
         $array = [];
@@ -56,6 +79,9 @@ trait PropertiesTrait
         return $array;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getColumnsTypes(): array
     {
         $array = [];
@@ -65,6 +91,9 @@ trait PropertiesTrait
         return $array;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getColumnsTypesLength(): array
     {
         $array = [];
@@ -75,6 +104,9 @@ trait PropertiesTrait
         return $array;
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     public function getColumnsPropertiesWithoutId(): array
     {
         return array_diff_key($this->getColumnsProperties(), [$this->getPrimaryKey() => null]);

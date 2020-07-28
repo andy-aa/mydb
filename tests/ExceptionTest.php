@@ -9,6 +9,9 @@ use TexLab\MyDB\Runner;
 
 class ExceptionTest extends TestCase
 {
+    /**
+     * @var Runner
+     */
     protected $table;
 
     protected function setUp(): void
@@ -23,7 +26,7 @@ class ExceptionTest extends TestCase
     }
 
 
-    function testSelect()
+    function testSelect(): void
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1064);
@@ -32,7 +35,7 @@ class ExceptionTest extends TestCase
         $this->table->runSQL("SELECT * FROM 123;");
     }
 
-    function testDbConnect()
+    function testDbConnect(): void
     {
         $this->expectException("Exception");
         $this->expectWarningMessageMatches('/Access denied/');

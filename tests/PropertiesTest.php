@@ -10,6 +10,9 @@ use TexLab\MyDB\Runner;
 
 class PropertiesTest extends TestCase
 {
+    /**
+     * @var DbEntity
+     */
     protected $table;
 
     protected function setUp(): void
@@ -44,7 +47,7 @@ SQL
     }
 
 
-    function testCRUD()
+    function testCRUD(): void
     {
         $this->assertEquals(
             [

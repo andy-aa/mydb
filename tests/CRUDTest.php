@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use TexLab\MyDB\CRUDInterface;
 use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\Runner;
@@ -10,6 +11,9 @@ use TexLab\MyDB\Runner;
 
 class CRUDTest extends TestCase
 {
+    /**
+     * @var DbEntity
+     */
     protected $table;
 
     protected function setUp(): void
@@ -51,7 +55,7 @@ SQL
     }
 
 
-    function testCRUD()
+    function testCRUD(): void
     {
         $this->assertIsArray(
             $this->table->get()

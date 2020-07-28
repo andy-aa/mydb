@@ -2,6 +2,8 @@
 
 namespace TexLab\MyDB;
 
+use Exception;
+
 interface RunnerInterface
 {
     /**
