@@ -70,5 +70,4 @@ class Runner implements RunnerInterface
     {
         throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
     }
-
 }

@@ -30,11 +30,8 @@ class Table extends Runner implements CRUDInterface
     {
 
         if (empty($conditions)) {
-
             $result = $this->runSQL($this->getSQL());
-
         } else {
-
             $bufWHERE = $this->queryCustom['WHERE'] ?? null;
 
             $this->queryCustom['WHERE'] = (empty($bufWHERE) ? '' : "$bufWHERE AND ") . $this->createWhereCondition($conditions);
@@ -42,11 +39,9 @@ class Table extends Runner implements CRUDInterface
             $result = $this->runSQL($this->getSQL());
 
             $this->queryCustom['WHERE'] = $bufWHERE;
-
         }
 
         return $result;
-
     }
 
     protected function getSQL(): string
@@ -100,5 +95,4 @@ class Table extends Runner implements CRUDInterface
 
         return $this->mysqli->affected_rows;
     }
-
 }
