@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/andy-aa/mydb/master.svg?style=flat-square)](https://travis-ci.com/github/andy-aa/mydb)
+[![Build Status](https://travis-ci.com/andy-aa/mydb.svg?branch=master)](https://travis-ci.com/andy-aa/mydb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
 [![Packagist](https://img.shields.io/packagist/vpre/texlab/mydb.svg?style=flat-square)](https://packagist.org/packages/texlab/mydb)
