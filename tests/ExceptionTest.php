@@ -27,7 +27,7 @@ class ExceptionTest extends TestCase
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1064);
-        $this->expectExceptionMessageRegExp('/^MySql query error:/');
+        $this->expectWarningMessageMatches('/^MySql query error:/');
 
         $this->table->runSQL("SELECT * FROM 123;");
     }
@@ -35,7 +35,7 @@ class ExceptionTest extends TestCase
     function testDbConnect()
     {
         $this->expectException("Exception");
-        $this->expectExceptionMessageRegExp('/Access denied/');
+        $this->expectWarningMessageMatches('/Access denied/');
 
         DB::Link([
             'host' => $GLOBALS['mysql_host'],
