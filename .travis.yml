@@ -5,11 +5,11 @@ services:
 
 php:
   - "7.4"
-  - nightly
-
-jobs:
-  allow_failures:
-    - php: nightly
+#  - nightly
+#
+#jobs:
+#  allow_failures:
+#    - php: nightly
 
 install:
   - travis_retry composer require --no-update php-coveralls/php-coveralls
