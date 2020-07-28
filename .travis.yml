@@ -12,6 +12,7 @@ install:
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
 
 script:
+  - php vendor/bin/phpcs
   - php vendor/bin/phpunit --testsuite alltests
 
 after_success:
