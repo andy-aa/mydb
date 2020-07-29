@@ -68,7 +68,7 @@ trait PropertiesTrait
     }
 
     /**
-     * @return array<string, array<string>>
+     * @return array<mixed, array<mixed>>
      */
     public function getColumnsProperties(): array
     {
@@ -80,7 +80,7 @@ trait PropertiesTrait
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<mixed, mixed>
      */
     public function getColumnsTypes(): array
     {
@@ -92,7 +92,7 @@ trait PropertiesTrait
     }
 
     /**
-     * @return array<string, string>
+     * @return array<mixed, mixed>
      */
     public function getColumnsTypesLength(): array
     {
@@ -105,7 +105,7 @@ trait PropertiesTrait
     }
 
     /**
-     * @return array<string, array<string>>
+     * @return array<mixed, mixed>
      */
     public function getColumnsPropertiesWithoutId(): array
     {

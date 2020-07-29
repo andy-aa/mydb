@@ -20,7 +20,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param string $sql
-     * @return string[][]
+     * @return mixed[][]
      * @throws Exception
      */
     public function runSQL(string $sql): array
@@ -29,8 +29,8 @@ class Runner implements RunnerInterface
     }
 
     /**
-     * @param mysqli_result $queryResult
-     * @return string[][]
+     * @param bool|mysqli_result $queryResult
+     * @return mixed[][]
      */
     protected function queryObjectToArray($queryResult): array
     {
@@ -66,7 +66,7 @@ class Runner implements RunnerInterface
     }
 
     /**
-     * @param array $error
+     * @param mixed[] $error
      * @return void
      * @throws Exception
      */
