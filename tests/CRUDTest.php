@@ -3,11 +3,9 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use TexLab\MyDB\CRUDInterface;
 use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\Runner;
-
 
 class CRUDTest extends TestCase
 {
@@ -51,11 +49,27 @@ SQL
             $GLOBALS['mysql_test_table'],
             $link
         );
-
     }
 
+    public function testDB(): void
+    {
+        $this->assertSame(
+            DB::link([
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => $GLOBALS['mysql_pass'],
+                'dbname' => $GLOBALS['mysql_db']
+            ]),
+            DB::link([
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => $GLOBALS['mysql_pass'],
+                'dbname' => $GLOBALS['mysql_db']
+            ])
+        );
+    }
 
-    function testCRUD(): void
+    public function testCRUD(): void
     {
         $this->assertIsArray(
             $this->table->get()
@@ -130,12 +144,10 @@ SQL
             1,
             $this->table->del(['name' => 'Peter', 'description' => 'Director'])
         );
-
     }
 
     protected function tearDown(): void
     {
         $this->table->runSQL("DROP DATABASE IF EXISTS `$GLOBALS[mysql_db]`;");
     }
-
 }

@@ -57,7 +57,7 @@ trait QueryBuilderTrait
      */
     public function addWhere(string $sql)
     {
-        $this->queryCustom['WHERE'] .= "AND $sql";
+        $this->queryCustom['WHERE'] .= " AND $sql";
         return $this;
     }
 

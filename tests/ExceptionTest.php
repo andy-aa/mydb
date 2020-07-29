@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use TexLab\MyDB\DB;
 use TexLab\MyDB\Runner;
 
-
 class ExceptionTest extends TestCase
 {
     /**
@@ -26,7 +25,7 @@ class ExceptionTest extends TestCase
     }
 
 
-    function testSelect(): void
+    public function testSelect(): void
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1064);
@@ -35,7 +34,7 @@ class ExceptionTest extends TestCase
         $this->table->runSQL("SELECT * FROM 123;");
     }
 
-    function testDbConnect(): void
+    public function testDbConnect(): void
     {
         $this->expectException("Exception");
         $this->expectWarningMessageMatches('/Access denied/');
@@ -46,5 +45,4 @@ class ExceptionTest extends TestCase
             'password' => '---------------------------------'
         ]);
     }
-
 }
