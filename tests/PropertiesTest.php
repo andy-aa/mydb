@@ -7,7 +7,6 @@ use TexLab\MyDB\DB;
 use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\Runner;
 
-
 class PropertiesTest extends TestCase
 {
     /**
@@ -32,8 +31,8 @@ class PropertiesTest extends TestCase
         $runner->runSQL(
             <<<SQL
 CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№',
+  `name` varchar(50) NOT NULL COMMENT 'Name',
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -44,10 +43,15 @@ SQL
             $GLOBALS['mysql_test_table'],
             $link
         );
+
+        $this->table->add([
+            'name' => 'Alex',
+            'description' => 'Manager'
+        ]);
     }
 
 
-    function testCRUD(): void
+    public function testProperties(): void
     {
         $this->assertEquals(
             [
@@ -65,6 +69,98 @@ SQL
                 'description' => '200'
             ],
             $this->table->getColumnsTypesLength()
+        );
+
+        $this->assertEquals(
+            [1 => 'Alex'],
+            $this->table->getColumn('name')
+        );
+
+        $this->assertEquals(
+            1,
+            $this->table->rowCount()
+        );
+
+        $this->assertEquals(
+            [
+                'id' => [
+                    'Field' => 'id',
+                    'Type' => 'int(11)',
+                    'Collation' => null,
+                    'Null' => 'NO',
+                    'Key' => 'PRI',
+                    'Default' => null,
+                    'Extra' => 'auto_increment',
+                    'Privileges' => 'select,insert,update,references',
+                    'Comment' => '№'
+                ],
+                'name' => [
+                    'Field' => 'name',
+                    'Type' => 'varchar(50)',
+                    'Collation' => 'utf8_general_ci',
+                    'Null' => 'NO',
+                    'Key' => '',
+                    'Default' => null,
+                    'Extra' => '',
+                    'Privileges' => 'select,insert,update,references',
+                    'Comment' => 'Name'
+                ],
+                'description' => [
+                    'Field' => 'description',
+                    'Type' => 'varchar(200)',
+                    'Collation' => 'utf8_general_ci',
+                    'Null' => 'NO',
+                    'Key' => '',
+                    'Default' => null,
+                    'Extra' => '',
+                    'Privileges' => 'select,insert,update,references',
+                    'Comment' => '']
+            ],
+            $this->table->getColumnsProperties()
+        );
+
+        $this->assertEquals(
+            [
+                'name' => [
+                    'Field' => 'name',
+                    'Type' => 'varchar(50)',
+                    'Collation' => 'utf8_general_ci',
+                    'Null' => 'NO',
+                    'Key' => '',
+                    'Default' => null,
+                    'Extra' => '',
+                    'Privileges' => 'select,insert,update,references',
+                    'Comment' => 'Name'
+                ],
+                'description' => [
+                    'Field' => 'description',
+                    'Type' => 'varchar(200)',
+                    'Collation' => 'utf8_general_ci',
+                    'Null' => 'NO',
+                    'Key' => '',
+                    'Default' => null,
+                    'Extra' => '',
+                    'Privileges' => 'select,insert,update,references',
+                    'Comment' => '']
+            ],
+            $this->table->getColumnsPropertiesWithoutId()
+        );
+
+        $this->assertEquals(
+            [
+                0 => 'id',
+                1 => 'name',
+                2 => 'description'
+            ],
+            $this->table->getColumnsNames()
+        );
+        $this->assertEquals(
+            [
+                'id' => '№',
+                'name' => 'Name',
+                'description' => ''
+            ],
+            $this->table->getColumnsComments()
         );
     }
 
