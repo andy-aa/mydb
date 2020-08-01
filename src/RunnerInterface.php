@@ -8,7 +8,7 @@ interface RunnerInterface
 {
     /**
      * @param string $sql
-     * @return string[][]
+     * @return mixed[][]
      */
     public function runSQL(string $sql): array;
 }
