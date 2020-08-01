@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-    "citest": [
+    "ci:test": [
       "@codestyle",
       "@psalm",
       "@phpstan",
