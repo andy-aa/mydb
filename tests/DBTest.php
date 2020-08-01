@@ -72,6 +72,19 @@ class DBTest extends TestCase
                 'dbname' => $GLOBALS['mysql_db_2']
             ])
         );
+
+        $this->assertIsObject(
+            DB::link(
+                [
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => $GLOBALS['mysql_pass'],
+                'dbname' => $GLOBALS['mysql_db']
+                ],
+                function ($error) {
+                }
+            )
+        );
     }
 
     protected function tearDown(): void
