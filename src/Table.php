@@ -41,7 +41,6 @@ class Table extends Runner implements CRUDInterface
     /**
      * @param array<string, mixed> $conditions
      * @return string[][]
-     * @throws Exception
      */
     public function get(array $conditions = []): array
     {
@@ -81,7 +80,6 @@ class Table extends Runner implements CRUDInterface
     /**
      * @param array<string, string> $data
      * @return int
-     * @throws Exception
      */
     public function add(array $data): int
     {
@@ -109,7 +107,6 @@ class Table extends Runner implements CRUDInterface
     /**
      * @param array<string, mixed> $conditions
      * @return int
-     * @throws Exception
      */
     public function del(array $conditions): int
     {
@@ -122,7 +119,6 @@ class Table extends Runner implements CRUDInterface
      * @param array<string, mixed> $conditions
      * @param array<string, string> $data
      * @return int
-     * @throws Exception
      */
     public function edit(array $conditions, array $data): int
     {

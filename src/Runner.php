@@ -33,7 +33,6 @@ class Runner implements RunnerInterface
     /**
      * @param string $sql
      * @return mixed[][]
-     * @throws Exception
      */
     public function runSQL(string $sql): array
     {
@@ -60,7 +59,6 @@ class Runner implements RunnerInterface
     /**
      * @param string $sql
      * @return bool|mysqli_result
-     * @throws Exception
      */
     protected function query(string $sql)
     {
@@ -80,7 +78,6 @@ class Runner implements RunnerInterface
     /**
      * @param mixed[] $error
      * @return void
-     * @throws Exception
      */
     protected function errorHandler(array $error)
     {
