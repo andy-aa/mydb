@@ -77,15 +77,26 @@ class DB implements DBInterface
         if (is_callable($errorHandler)) {
             static::$errorHandler = $errorHandler;
         } else {
+            /**
+             * @param mixed[] $error
+             */
             static::$errorHandler = function ($error): void {
-                throw new Exception("MySql connect error:" . $error['connect_error'], $error['connect_errno']);
+                throw new Exception("MySql connect error : $error[connect_error]", $error['connect_errno']);
             };
         }
 
         $key = serialize($options);
 
-        return static::$instances[$key] ?? static::$instances[$key] = static::new(
-            array_merge(static::DEFAULT_OPTIONS, $options)
-        );
+        if (empty(static::$instances[$key])) {
+            static::$instances[$key] = static::new(
+                array_merge(static::DEFAULT_OPTIONS, $options)
+            );
+        }
+
+        return static::$instances[$key];
+
+//        return static::$instances[$key] ?? static::$instances[$key] = static::new(
+//                array_merge(static::DEFAULT_OPTIONS, $options)
+//            );
     }
 }

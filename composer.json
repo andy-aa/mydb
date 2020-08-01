@@ -29,16 +29,16 @@
   },
   "scripts": {
     "ci:test": [
-      "@codestyle",
-      "@psalm",
-      "@phpstan",
+      "@codestyle:check",
+      "@psalm:check",
+      "@phpstan:check",
       "@test"
     ],
     "test": "phpunit --testsuite alltests",
-    "phpstan": "phpstan analyse -c phpstan.neon",
-    "psalm": "psalm",
+    "phpstan:check": "phpstan analyse -c phpstan.neon",
+    "psalm:check": "psalm",
     "psalm:fix": "psalter --issues=all",
-    "codestyle": "phpcs",
+    "codestyle:check": "phpcs",
     "codestyle:fix": "phpcbf",
     "test:coverage:html": "phpunit --coverage-html build/coverage",
     "test:coverage:ci": "phpunit --coverage-clover build/logs/clover.xml"
