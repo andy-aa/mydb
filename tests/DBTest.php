@@ -55,6 +55,20 @@ class DBTest extends TestCase
                 'host' => $GLOBALS['mysql_host'],
                 'username' => $GLOBALS['mysql_user'],
                 'password' => $GLOBALS['mysql_pass'],
+            ])
+        );
+
+        $this->assertNotSame(
+            DB::link([
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => $GLOBALS['mysql_pass'],
+                'dbname' => $GLOBALS['mysql_db']
+            ]),
+            DB::link([
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => $GLOBALS['mysql_pass'],
                 'dbname' => $GLOBALS['mysql_db_2']
             ])
         );
