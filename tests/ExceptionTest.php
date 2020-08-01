@@ -48,6 +48,7 @@ class ExceptionTest extends TestCase
     public function testDbConnect(): void
     {
         $this->expectException("Exception");
+        $this->expectExceptionCode(1045);
         $this->expectWarningMessageMatches('/Access denied/');
 
         DB::link([

@@ -91,7 +91,8 @@ class DBTest extends TestCase
     public function testTrowErrorHandler(): void
     {
         $this->expectException("Exception");
-        $this->expectWarningMessageMatches('/Access denied/');
+        $this->expectExceptionCode(1045);
+        $this->expectWarningMessageMatches('/Custom error/');
 
         DB::link(
             [
@@ -101,7 +102,7 @@ class DBTest extends TestCase
             ],
             function ($error) {
                 throw new Exception(
-                    "MySql connect error:" . $error['connect_error'],
+                    "Custom error:" . $error['connect_error'],
                     $error['connect_errno']
                 );
             }
