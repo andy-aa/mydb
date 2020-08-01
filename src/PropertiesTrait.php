@@ -7,9 +7,9 @@ trait PropertiesTrait
     //    protected $primaryKey = 'id';
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getPrimaryKey(): ?string
+    public function getPrimaryKey(): string
     {
         return $this->seekPrimaryKeyName($this->tableName);
     }
@@ -24,11 +24,11 @@ trait PropertiesTrait
 
     /**
      * @param string $tableName
-     * @return string|null
+     * @return string
      */
-    private function seekPrimaryKeyName(string $tableName): ?string
+    private function seekPrimaryKeyName(string $tableName): string
     {
-        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'] ?? null;
+        return $this->runSQL("SHOW KEYS FROM $tableName WHERE Key_name = 'PRIMARY'")[0]['Column_name'] ?? '';
     }
 
     /**
