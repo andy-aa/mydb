@@ -76,14 +76,35 @@ class DBTest extends TestCase
         $this->assertIsObject(
             DB::link(
                 [
-                'host' => $GLOBALS['mysql_host'],
-                'username' => $GLOBALS['mysql_user'],
-                'password' => $GLOBALS['mysql_pass'],
-                'dbname' => $GLOBALS['mysql_db']
+                    'host' => $GLOBALS['mysql_host'],
+                    'username' => $GLOBALS['mysql_user'],
+                    'password' => $GLOBALS['mysql_pass'],
+                    'dbname' => $GLOBALS['mysql_db']
                 ],
                 function ($error) {
                 }
             )
+        );
+    }
+
+
+    public function testTrowErrorHandler(): void
+    {
+        $this->expectException("Exception");
+        $this->expectWarningMessageMatches('/Access denied/');
+
+        DB::link(
+            [
+                'host' => $GLOBALS['mysql_host'],
+                'username' => $GLOBALS['mysql_user'],
+                'password' => '---------------------------------'
+            ],
+            function ($error) {
+                throw new Exception(
+                    "MySql connect error:" . $error['connect_error'],
+                    $error['connect_errno']
+                );
+            }
         );
     }
 
