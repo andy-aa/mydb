@@ -16,8 +16,9 @@ interface DBInterface
 
     /**
      * @param array<string, mixed> $options
+     * @param callable|null $errorHandler
      * @return mysqli
      * @throws Exception
      */
-    public static function link(array $options): mysqli;
+    public static function link(array $options, callable $errorHandler = null): mysqli;
 }

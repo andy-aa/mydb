@@ -19,6 +19,11 @@ class DB implements DBInterface
      */
     private static $instances = [];
 
+    /**
+     * @var callable
+     */
+    private static $errorHandler = null;
+
     private const DEFAULT_OPTIONS = [
         'host' => null,
         'username' => null,
@@ -31,7 +36,6 @@ class DB implements DBInterface
     /**
      * @param array<string, mixed> $options
      * @return mysqli
-     * @throws Exception
      */
     private static function new(array $options): mysqli
     {
@@ -44,9 +48,10 @@ class DB implements DBInterface
             $options['socket']
         );
 
-        if ($mysqli->connect_error) {
+        if ($mysqli->connect_errno) {
             static::errorHandler([
-                'connect_error' => $mysqli->connect_error
+                'connect_error' => $mysqli->connect_error,
+                'connect_errno' => $mysqli->connect_errno
             ]);
         }
 
@@ -54,24 +59,29 @@ class DB implements DBInterface
     }
 
     /**
-     * @param string[] $error
+     * @param mixed[] $error
      * @return void
-     * @throws Exception
      */
     public static function errorHandler(array $error): void
     {
-        throw new Exception(
-            "MySql connect error:" . $error['connect_error']
-        );
+        (static::$errorHandler)($error);
     }
 
     /**
      * @param array<string, mixed> $options
+     * @param callable|null $errorHandler
      * @return mysqli
-     * @throws Exception
      */
-    public static function link(array $options): mysqli
+    public static function link(array $options, callable $errorHandler = null): mysqli
     {
+        if (is_callable($errorHandler)) {
+            static::$errorHandler = $errorHandler;
+        } else {
+            static::$errorHandler = function ($error): void {
+                throw new Exception("MySql connect error:" . $error['connect_error'], $error['connect_errno']);
+            };
+        }
+
         return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
             array_merge(
                 static::DEFAULT_OPTIONS,
