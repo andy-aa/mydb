@@ -62,7 +62,7 @@ class DB implements DBInterface
      * @param mixed[] $error
      * @return void
      */
-    public static function errorHandler(array $error): void
+    protected static function errorHandler(array $error)
     {
         (static::$errorHandler)($error);
     }
@@ -82,11 +82,10 @@ class DB implements DBInterface
             };
         }
 
-        return static::$instances[$key = serialize($options)] ?? static::$instances[$key] = static::new(
-            array_merge(
-                static::DEFAULT_OPTIONS,
-                $options
-            )
-        );
+        $key = serialize($options);
+
+        return static::$instances[$key] ?? static::$instances[$key] = static::new(
+                array_merge(static::DEFAULT_OPTIONS, $options)
+            );
     }
 }
