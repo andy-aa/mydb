@@ -20,7 +20,7 @@ class DB implements DBInterface
     private static $instances = [];
 
     /**
-     * @var callable
+     * @var callable|null
      */
     private static $errorHandler = null;
 
@@ -64,7 +64,9 @@ class DB implements DBInterface
      */
     protected static function errorHandler(array $error)
     {
-        (static::$errorHandler)($error);
+        if (is_callable(static::$errorHandler)) {
+            (static::$errorHandler)($error);
+        }
     }
 
     /**
