@@ -85,7 +85,7 @@ class DB implements DBInterface
         $key = serialize($options);
 
         return static::$instances[$key] ?? static::$instances[$key] = static::new(
-                array_merge(static::DEFAULT_OPTIONS, $options)
-            );
+            array_merge(static::DEFAULT_OPTIONS, $options)
+        );
     }
 }
