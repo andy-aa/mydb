@@ -15,9 +15,9 @@ trait PropertiesTrait
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function rowCount(): ?int
+    public function rowCount(): int
     {
         return (int)$this->runSQL("SELECT COUNT(*) AS C FROM $this->tableName;")[0]['C'];
     }
