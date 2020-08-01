@@ -13,9 +13,21 @@ class Runner implements RunnerInterface
      */
     protected $mysqli;
 
+    /**
+     * @var callable
+     */
+    protected $errorHandler;
+
     public function __construct(mysqli $mysqli)
     {
         $this->mysqli = $mysqli;
+
+        /**
+         * @param mixed[] $error
+         */
+        $this->errorHandler = function ($error) {
+            throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
+        };
     }
 
     /**
@@ -72,6 +84,16 @@ class Runner implements RunnerInterface
      */
     protected function errorHandler(array $error)
     {
-        throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
+        ($this->errorHandler)($error);
+    }
+
+    /**
+     * @param callable $errorHandler
+     * @return Runner
+     */
+    public function setErrorHandler($errorHandler)
+    {
+        $this->errorHandler = $errorHandler;
+        return $this;
     }
 }

@@ -24,7 +24,6 @@ class ExceptionTest extends TestCase
         );
     }
 
-
     public function testSelect(): void
     {
         $this->expectException("Exception");
@@ -32,6 +31,18 @@ class ExceptionTest extends TestCase
         $this->expectWarningMessageMatches('/^MySql query error:/');
 
         $this->table->runSQL("SELECT * FROM 123;");
+    }
+
+    public function testErrorHandler(): void
+    {
+        $this->assertSame(
+            [],
+            $this
+                ->table
+                ->setErrorHandler(function () {
+                })
+                ->runSQL("SELECT * FROM 123;")
+        );
     }
 
     public function testDbConnect(): void

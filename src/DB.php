@@ -8,8 +8,7 @@ use mysqli;
 /**
  * Class DB
  *
- * The class implements a singleton pattern to
- * create a new connection to the MySql server.
+ * Create a new connection to the MySql server.
  *
  * @package TexLab\MyDB
  */
