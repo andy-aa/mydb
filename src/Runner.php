@@ -66,8 +66,8 @@ class Runner implements RunnerInterface
 
         if ($this->mysqli->errno) {
             $this->errorHandler([
-                'errno' => $this->mysqli->errno,
                 'error' => $this->mysqli->error,
+                'errno' => $this->mysqli->errno,
                 'sql' => $sql
             ]);
         }
