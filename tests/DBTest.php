@@ -81,7 +81,7 @@ class DBTest extends TestCase
                     'password' => $GLOBALS['mysql_pass'],
                     'dbname' => $GLOBALS['mysql_db']
                 ],
-                function ($error) {
+                function ($mysqli) {
                 }
             )
         );
@@ -100,11 +100,8 @@ class DBTest extends TestCase
                 'username' => $GLOBALS['mysql_user'],
                 'password' => '---------------------------------'
             ],
-            function ($error) {
-                throw new Exception(
-                    "Custom error:" . $error['connect_error'],
-                    $error['connect_errno']
-                );
+            function ($mysqli) {
+                throw new Exception("Custom error : $mysqli->connect_error", $mysqli->connect_errno);
             }
         );
     }

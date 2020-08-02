@@ -52,23 +52,20 @@ class DB implements DBInterface
         );
 
         if ($mysqli->connect_errno) {
-            static::errorHandler([
-                'connect_error' => $mysqli->connect_error,
-                'connect_errno' => $mysqli->connect_errno
-            ]);
+            static::errorHandler($mysqli);
         }
 
         return $mysqli;
     }
 
     /**
-     * @param mixed[] $error
+     * @param mysqli $mysqli
      * @return void
      */
-    protected static function errorHandler(array $error)
+    protected static function errorHandler(mysqli $mysqli)
     {
         if (is_callable(static::$errorHandler)) {
-            (static::$errorHandler)($error);
+            (static::$errorHandler)($mysqli);
         }
     }
 
@@ -83,10 +80,10 @@ class DB implements DBInterface
             static::$errorHandler = $errorHandler;
         } else {
             /**
-             * @param mixed[] $error
+             * @param mysqli $mysqli
              */
-            static::$errorHandler = function (array $error): void {
-                throw new Exception("MySql connect error : $error[connect_error]", $error['connect_errno']);
+            static::$errorHandler = function (mysqli $mysqli): void {
+                throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
             };
         }
 
