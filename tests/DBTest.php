@@ -106,6 +106,19 @@ class DBTest extends TestCase
         );
     }
 
+    public function testTrowExceptionDbConnect(): void
+    {
+        $this->expectException("Exception");
+        $this->expectExceptionCode(1045);
+        $this->expectWarningMessageMatches('/Access denied/');
+
+        DB::link([
+            'host' => $GLOBALS['mysql_host'],
+            'username' => $GLOBALS['mysql_user'],
+            'password' => 'fake_password'
+        ]);
+    }
+
     protected function tearDown(): void
     {
         $this->runner->runSQL("DROP DATABASE IF EXISTS `$GLOBALS[mysql_db]`;");
