@@ -150,45 +150,46 @@ echo json_encode(
 ```php
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
-use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\DB;
+use TexLab\MyDB\Runner;
 
-class DBTable extends DbEntity
-{
-    protected function errorHandler(array $error)
-    {
+$runner = new Runner(
+    DB::link(
+        [
+            'host' => 'localhost',
+            'username' => 'root',
+            'password' => 'root',
+            'dbname' => 'test_db'
+        ]
+    )
+);
+
+$runner->setErrorHandler(
+    function ($mysqli, $sql) {
         //put your error handling code here
-        print_r($error);
+        print_r([$mysqli->error, $mysqli->errno, $sql]);
     }
-}
+);
 
-
-$link = DB::link([
-    'host' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'dbname' => 'mydb'
-]);
-
-$table1 = new DBTable('table1', $link);
-
-$table1->runSQL("SELECT * FROM unknown_table");
+$runner->runSQL("SELECT * FROM unknown_table");
 ```
 Result:
 ```
 Array
 (
-    [errno] => 1146
-    [error] => Table 'mydb.unknown_table' doesn't exist
-    [sql] => SELECT * FROM unknown_table
+    [0] => Table 'test_db.unknown_table' doesn't exist
+    [1] => 1146
+    [2] => SELECT * FROM unknown_table
 )
 ```
 ## Pagination
 
 ```php
-echo $table1->setPageSize(2)->pageCount();
+echo $table1
+        ->setPageSize(2)
+        ->pageCount();
 ```
 
 ```php

@@ -16,9 +16,11 @@ $runner = new Runner(
     )
 );
 
-$runner->setErrorHandler(function ($mysqli, $sql) {
-    //put your error handling code here
-    var_dump($mysqli->error, $sql);
-});
+$runner->setErrorHandler(
+    function ($mysqli, $sql) {
+        //put your error handling code here
+        print_r([$mysqli->error, $mysqli->errno, $sql]);
+    }
+);
 
 $runner->runSQL("SELECT * FROM unknown_table");
