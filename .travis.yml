@@ -17,8 +17,7 @@ install:
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
 
 script:
-  - php vendor/bin/phpcs
-  - php vendor/bin/phpunit --testsuite alltests
+  - composer ci:test
 
 after_success:
   - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml

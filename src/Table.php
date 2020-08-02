@@ -14,9 +14,13 @@ class Table extends Runner implements CRUDInterface
     protected $tableName;
 
     /**
-     * @var mixed[]
+     * @var array<string, mixed>
      */
     protected $queryCustom = [];
+
+    /**
+     * @var array<string, mixed>
+     */
     private const QUERY_DEFAULT = [
         'SELECT' => '*',
         'FROM' => '',
@@ -51,7 +55,7 @@ class Table extends Runner implements CRUDInterface
             $bufWHERE = $this->queryCustom['WHERE'] ?? null;
 
             $this->queryCustom['WHERE'] =
-                (empty($bufWHERE) ? '' : "$bufWHERE AND ") . $this->createWhereCondition($conditions);
+                (is_null($bufWHERE) ? '' : "$bufWHERE AND ") . $this->createWhereCondition($conditions);
 
             $result = $this->runSQL($this->getSQL());
 

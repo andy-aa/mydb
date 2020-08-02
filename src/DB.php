@@ -24,6 +24,9 @@ class DB implements DBInterface
      */
     private static $errorHandler = null;
 
+    /**
+     * @var array<string, mixed>
+     */
     private const DEFAULT_OPTIONS = [
         'host' => null,
         'username' => null,

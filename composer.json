@@ -32,9 +32,9 @@
       "@codestyle:check",
       "@psalm:check",
       "@phpstan:check",
-      "@test"
+      "@phpunit:test"
     ],
-    "test": "phpunit --testsuite alltests",
+    "phpunit:test": "phpunit --testsuite alltests",
     "phpstan:check": "phpstan analyse -c phpstan.neon",
     "psalm:check": "psalm",
     "psalm:fix": "psalter --issues=all",
