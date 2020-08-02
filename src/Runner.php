@@ -26,7 +26,7 @@ class Runner implements RunnerInterface
          * @param mysqli $mysqli
          * @param string $sql
          */
-        $this->errorHandler = function ($mysqli, $sql): void {
+        $this->errorHandler = function (mysqli $mysqli, string $sql): void {
             throw new Exception(
                 "MySql query error : $mysqli->error\nSQL : $sql",
                 $mysqli->errno
@@ -69,13 +69,7 @@ class Runner implements RunnerInterface
         $queryResult = $this->mysqli->query($sql);
 
         if ($this->mysqli->errno) {
-
             $this->errorHandler($this->mysqli, $sql);
-//            $this->errorHandler([
-//                'error' => $this->mysqli->error,
-//                'errno' => $this->mysqli->errno,
-//                'sql' => $sql
-//            ]);
         }
 
         return $queryResult;

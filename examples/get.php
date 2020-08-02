@@ -15,5 +15,3 @@ $link = DB::link([
 $table1 = new DbEntity('table1', $link);
 
 print_r($table1->get());
-
-var_dump($link);
