@@ -7,7 +7,7 @@ trait PaginationTrait
     /**
      * @var int
      */
-    protected $pageSize;
+    protected $pageSize = null;
 
     /**
      * @param int $size

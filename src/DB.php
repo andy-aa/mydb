@@ -82,7 +82,7 @@ class DB implements DBInterface
             /**
              * @param mixed[] $error
              */
-            static::$errorHandler = function ($error): void {
+            static::$errorHandler = function (array $error): void {
                 throw new Exception("MySql connect error : $error[connect_error]", $error['connect_errno']);
             };
         }

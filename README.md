@@ -3,7 +3,7 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
 [![Packagist](https://img.shields.io/packagist/vpre/texlab/mydb.svg?style=flat-square)](https://packagist.org/packages/texlab/mydb)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg?style=flat-square)](https://phpstan.org/)
-[![Psalm](https://img.shields.io/badge/Psalm-Level%203-brightgreen.svg?style=flat-square)](https://psalm.dev/) 
+[![Psalm](https://img.shields.io/badge/Psalm-Level%202-brightgreen.svg?style=flat-square)](https://psalm.dev/) 
 [![Coverage Status](https://img.shields.io/coveralls/github/andy-aa/mydb/master.svg?style=flat-square)](https://coveralls.io/github/andy-aa/mydb?branch=master)
 
 # MyDB

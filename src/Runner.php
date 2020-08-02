@@ -25,7 +25,7 @@ class Runner implements RunnerInterface
         /**
          * @param mixed[] $error
          */
-        $this->errorHandler = function ($error) {
+        $this->errorHandler = function (array $error): void {
             throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
         };
     }
