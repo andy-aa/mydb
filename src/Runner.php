@@ -23,10 +23,14 @@ class Runner implements RunnerInterface
         $this->mysqli = $mysqli;
 
         /**
-         * @param mixed[] $error
+         * @param mysqli $mysqli
+         * @param string $sql
          */
-        $this->errorHandler = function (array $error): void {
-            throw new Exception("MySql query error: \n" . join("\n", $error), $error['errno']);
+        $this->errorHandler = function ($mysqli, $sql): void {
+            throw new Exception(
+                "MySql query error : $mysqli->error\nSQL : $sql",
+                $mysqli->errno
+            );
         };
     }
 
@@ -65,23 +69,26 @@ class Runner implements RunnerInterface
         $queryResult = $this->mysqli->query($sql);
 
         if ($this->mysqli->errno) {
-            $this->errorHandler([
-                'error' => $this->mysqli->error,
-                'errno' => $this->mysqli->errno,
-                'sql' => $sql
-            ]);
+
+            $this->errorHandler($this->mysqli, $sql);
+//            $this->errorHandler([
+//                'error' => $this->mysqli->error,
+//                'errno' => $this->mysqli->errno,
+//                'sql' => $sql
+//            ]);
         }
 
         return $queryResult;
     }
 
     /**
-     * @param mixed[] $error
+     * @param mysqli $mysqli
+     * @param string $sql
      * @return void
      */
-    protected function errorHandler(array $error)
+    protected function errorHandler($mysqli, $sql)
     {
-        ($this->errorHandler)($error);
+        ($this->errorHandler)($mysqli, $sql);
     }
 
     /**

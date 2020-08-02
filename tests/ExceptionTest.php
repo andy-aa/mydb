@@ -28,7 +28,7 @@ class ExceptionTest extends TestCase
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1064);
-        $this->expectWarningMessageMatches('/^MySql query error:/');
+        $this->expectWarningMessageMatches('/^MySql query error :/');
 
         $this->table->runSQL("SELECT * FROM 123;");
     }
