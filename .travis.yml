@@ -1,12 +1,12 @@
 language: php
 
-services:
-  - mariadb
+#services:
+#  - mariadb
 
-php:
-  - "7.2"
-  - "7.3"
-  - "7.4"
+#php:
+#  - "7.2"
+#  - "7.3"
+#  - "7.4"
 #  - nightly
 #  - hhvm
 
@@ -14,14 +14,14 @@ jobs:
 #  allow_failures:
 #    - php: nightly
 #    - php: hhvm
-#  include:
-#  - stage: Test
-#    dist: xenial
+  include:
+  - stage: Test
+    dist: xenial
 #    env: DB=mysql MYSQL_VERSION=5.7
-#    php: 7.2
-#    services:
-#      - mariadb
-#    sudo: required
+    php: 7.2
+    services:
+      - mariadb
+    sudo: required
 
 
 
