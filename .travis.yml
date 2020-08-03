@@ -1,7 +1,7 @@
 language: php
 
-#services:
-#  - mysql
+services:
+  - mysql
 
 #php:
 #  - "7.2"
@@ -16,25 +16,23 @@ jobs:
   #    - php: hhvm
   include:
 
-    - stage: Test 7.4
-      php: 7.4
-      services:
-        - mysql
+    - stage: Test
+      php: 7.2
 
-    - stage: Test 7.4
+    - stage: Test
+      php: 7.3
+
+    - stage: Test
       php: 7.4
-      services:
-        - mysql
+      install:
+        - travis_retry composer require --no-update php-coveralls/php-coveralls
       after_success:
         - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
         - travis_retry php vendor/bin/php-coveralls -v
 
 
-
-
 install:
   - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - travis_retry composer require --no-update php-coveralls/php-coveralls
   - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
 
 script:
