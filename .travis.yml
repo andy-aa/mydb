@@ -17,9 +17,6 @@ jobs:
   include:
 
     - stage: Test
-      php: 7.0
-
-    - stage: Test
       php: 7.1
 
     - stage: Test
