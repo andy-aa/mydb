@@ -17,23 +17,28 @@ jobs:
   include:
 
     - stage: Test
+      env: DB=mysql
       php: 7.1
 
     - stage: Test
+      env: DB=mysql
       php: 7.2
 
     - stage: Test
+      env: DB=mariadb
       php: 7.3
       addons:
         mariadb: "10.4"
-      before_install:
-        - sudo mysql -e "use mysql; SET PASSWORD FOR root@localhost =  PASSWORD('root');FLUSH PRIVILEGES;"
+#      before_install:
+#        - sudo mysql -e "use mysql; SET PASSWORD FOR root@localhost =  PASSWORD('root');FLUSH PRIVILEGES;"
 
 
     - stage: Test
+      env: DB=mysql
       php: 7.3
 
     - stage: Test
+      env: DB=mysql
       php: 7.4
       script:
         - composer ci:test
@@ -45,7 +50,12 @@ jobs:
         - travis_retry php vendor/bin/php-coveralls -v
 
 before_install:
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - if [ "$DB" == "mariadb" ] then
+    sudo mysql -e "use mysql; SET PASSWORD FOR root@localhost =  PASSWORD('root');FLUSH PRIVILEGES;"
+    else
+    sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    fi
+#  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
 
 install:
   - travis_retry composer require phpunit/phpunit:7.5 --ignore-platform-reqs
