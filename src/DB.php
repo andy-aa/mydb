@@ -19,10 +19,10 @@ class DB implements DBInterface
      */
     private static $instances = [];
 
-    /**
-     * @var callable|null
-     */
-    private static $errorHandler = null;
+//    /**
+//     * @var callable|null
+//     */
+//    private static $errorHandler = null;
 
     /**
      * @var array<string, mixed>
@@ -38,9 +38,10 @@ class DB implements DBInterface
 
     /**
      * @param array<string, mixed> $options
+     * @param callable $errorHandler
      * @return mysqli
      */
-    private static function new(array $options): mysqli
+    private static function new(array $options, callable $errorHandler): mysqli
     {
         $mysqli = @new mysqli(
             $options['host'],
@@ -52,22 +53,33 @@ class DB implements DBInterface
         );
 
         if ($mysqli->connect_errno) {
-            static::errorHandler($mysqli);
+            $errorHandler($mysqli);
         }
 
         return $mysqli;
     }
 
-    /**
-     * @param mysqli $mysqli
-     * @return void
-     */
-    protected static function errorHandler(mysqli $mysqli)
-    {
-        if (is_callable(static::$errorHandler)) {
-            (static::$errorHandler)($mysqli);
-        }
-    }
+//    /**
+//     * @param mysqli $mysqli
+//     * @return void
+//     */
+//    protected static function errorHandler(mysqli $mysqli)
+//    {
+//        if (is_callable(static::$errorHandler)) {
+//            (static::$errorHandler)($mysqli);
+//        }
+//    }
+
+//    /**
+//     * @param callable|null $errorHandler
+//     * @return void
+//     */
+//    protected static function setErrorHandler(callable $errorHandler = null): void
+//    {
+//        static::$errorHandler = is_callable($errorHandler) ? $errorHandler : function (mysqli $mysqli): void {
+//            throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
+//        };
+//    }
 
     /**
      * @param array<string, mixed> $options
@@ -76,22 +88,16 @@ class DB implements DBInterface
      */
     public static function link(array $options, callable $errorHandler = null): mysqli
     {
-        if (is_callable($errorHandler)) {
-            static::$errorHandler = $errorHandler;
-        } else {
-            /**
-             * @param mysqli $mysqli
-             */
-            static::$errorHandler = function (mysqli $mysqli): void {
-                throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
-            };
-        }
+        $userErrorHandler = is_callable($errorHandler) ? $errorHandler : function (mysqli $mysqli): void {
+            throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
+        };
 
         $key = serialize($options);
 
         if (empty(static::$instances[$key])) {
             static::$instances[$key] = static::new(
-                array_merge(static::DEFAULT_OPTIONS, $options)
+                array_merge(static::DEFAULT_OPTIONS, $options),
+                $userErrorHandler
             );
         }
 
