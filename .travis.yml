@@ -11,16 +11,23 @@ language: php
 #  - hhvm
 
 jobs:
-#  allow_failures:
-#    - php: nightly
-#    - php: hhvm
+  #  allow_failures:
+  #    - php: nightly
+  #    - php: hhvm
   include:
-  - stage: 7.4
-#    dist: xenial
-    php: 7.4
-    services:
-      - mysql
-#    sudo: required
+
+    - stage: Test 7.4
+      php: 7.4
+      services:
+        - mysql
+
+    - stage: Test 7.4
+      php: 7.4
+      services:
+        - mysql
+      after_success:
+        - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+        - travis_retry php vendor/bin/php-coveralls -v
 
 
 
@@ -33,6 +40,3 @@ install:
 script:
   - composer ci:test
 
-after_success:
-  - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-  - travis_retry php vendor/bin/php-coveralls -v
