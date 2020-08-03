@@ -26,7 +26,7 @@ class RunnerExceptionTest extends TestCase
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1064);
-        $this->expectWarningMessageMatches('/^MySql query error :/');
+        $this->expectExceptionMessageRegExp('/^MySql query error :/');
 
         (new Runner($this->mysqli))->runSQL("SELECT * FROM 123;");
     }

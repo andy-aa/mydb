@@ -92,7 +92,7 @@ class DBTest extends TestCase
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1045);
-        $this->expectWarningMessageMatches('/Custom error/');
+        $this->expectExceptionMessageRegExp('/Custom error/');
 
         DB::link(
             [
@@ -110,7 +110,7 @@ class DBTest extends TestCase
     {
         $this->expectException("Exception");
         $this->expectExceptionCode(1045);
-        $this->expectWarningMessageMatches('/Access denied/');
+        $this->expectExceptionMessageRegExp('/Access denied/');
 
         DB::link([
             'host' => $GLOBALS['mysql_host'],
