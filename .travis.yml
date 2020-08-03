@@ -51,7 +51,7 @@ jobs:
 
 before_install:
   - |
-    if [ "$DB" == "mariadb" ] then
+    if [[ "$DB" == "mariadb" ]] then
      mysql -e "use mysql; SET PASSWORD FOR root@localhost =  PASSWORD('root');FLUSH PRIVILEGES;"
     else
      mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
