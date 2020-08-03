@@ -24,6 +24,11 @@ jobs:
 
     - stage: Test
       php: 7.3
+      addons:
+        mariadb: "10.4"
+
+    - stage: Test
+      php: 7.3
 
     - stage: Test
       php: 7.4
