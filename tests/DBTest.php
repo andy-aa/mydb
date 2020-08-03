@@ -91,7 +91,7 @@ class DBTest extends TestCase
     public function testTrowErrorHandler(): void
     {
         $this->expectException("Exception");
-        $this->expectExceptionCode(1045);
+//        $this->expectExceptionCode(1045); mysql 1045 mariadb 1698
         $this->expectExceptionMessageRegExp('/Custom error/');
 
         DB::link(
@@ -109,7 +109,7 @@ class DBTest extends TestCase
     public function testTrowExceptionDbConnect(): void
     {
         $this->expectException("Exception");
-        $this->expectExceptionCode(1045);
+//        $this->expectExceptionCode(1045); mysql 1045 mariadb 1698
         $this->expectExceptionMessageRegExp('/Access denied/');
 
         DB::link([
