@@ -1,13 +1,12 @@
 {
   "name": "texlab/mydb",
   "type": "library",
-  "description": "The lightweight MySql database library",
+  "description": "The lightweight ORM for MySql and MariaDB",
   "keywords": [
     "php",
-    "orm",
-    "mysql",
-    "object",
-    "data"
+    "ORM",
+    "MySql",
+    "MariaDB"
   ],
   "license": "MIT",
   "require": {

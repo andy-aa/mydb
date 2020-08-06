@@ -3,12 +3,16 @@ language: php
 services:
   - mysql
 
-name:
+name: MySql
 
-php:
-  - 7.1
-  - 7.2
-  - 7.3
+
+
+matrix:
+  include:
+    - php: 7.1
+    - php: 7.2
+    - php: 7.3
+
 #  - "7.4"
 #  - nightly
 #  - hhvm
@@ -20,24 +24,15 @@ jobs:
   include:
 
     - stage: MariaDB
-      php:
-        - 7.3
-        - 7.4
+      php: 7.4
       addons:
         mariadb: "10.4"
       before_install:
         - sudo mysql -e "use mysql; SET PASSWORD FOR root@localhost =  PASSWORD('root');FLUSH PRIVILEGES;"
 
-    #    - stage: MySql
-    #      php: 7.1
-    #
-    #    - stage: MySql
-    #      php: 7.2
-    #
-    #    - stage: MySql
-    #      php: 7.3
-
     - stage: MySql
+      services:
+        - mysql
       php: 7.4
       script:
         - composer ci:test
