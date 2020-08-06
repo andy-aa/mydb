@@ -20,7 +20,9 @@ jobs:
   include:
 
     - stage: MariaDB
-      php: 7.4
+      php:
+        - 7.3
+        - 7.4
       addons:
         mariadb: "10.4"
       before_install:
