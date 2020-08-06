@@ -41,7 +41,7 @@ jobs:
         - composer ci:test
       install:
         - travis_retry composer require --no-update php-coveralls/php-coveralls
-        - travis_retry composer install --no-interaction --prefer-dist --no-progress --no-suggest
+        - travis_retry composer update --no-interaction --prefer-dist --no-progress --no-suggest
       after_success:
         - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
         - travis_retry php vendor/bin/php-coveralls -v
