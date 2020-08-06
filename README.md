@@ -33,7 +33,7 @@ Example **composer.json** file
 ```
 {
     "require": {
-        "texlab/mydb": "^0.0.4"
+        "texlab/mydb": "^0.0.5"
     }
 }
 ```
