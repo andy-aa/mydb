@@ -3,9 +3,6 @@ language: php
 services:
   - mysql
 
-name: MySql
-
-
 php:
   - 7.1
   - 7.2
@@ -32,8 +29,6 @@ jobs:
       after_success:
         - travis_retry php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
         - travis_retry php vendor/bin/php-coveralls -v
-
-sudo: required
 
 before_install:
   - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
