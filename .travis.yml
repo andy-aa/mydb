@@ -6,23 +6,13 @@ services:
 name: MySql
 
 
-
-matrix:
-  include:
-    - php: 7.1
-    - php: 7.2
-    - php: 7.3
-
-#  - "7.4"
-#  - nightly
-#  - hhvm
+php:
+  - 7.1
+  - 7.2
+  - 7.3
 
 jobs:
-  #  allow_failures:
-  #    - php: nightly
-  #    - php: hhvm
   include:
-
     - stage: MariaDB
       php: 7.4
       addons:
@@ -53,4 +43,3 @@ install:
 
 script:
   - composer phpunit:test
-
