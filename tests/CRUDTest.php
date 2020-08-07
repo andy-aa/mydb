@@ -24,11 +24,17 @@ class CRUDTest extends TestCase
 
         $runner = new Runner($link);
 
-        $runner->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;");
-        $runner->runSQL("USE `$GLOBALS[mysql_db]`;");
 
+        $this->table = new DbEntity(
+            $GLOBALS['mysql_test_table'],
+            $link
+        );
 
-        $runner->runSQL(<<<SQL
+        $this->table->runScript(<<<SQL
+
+CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;
+USE `$GLOBALS[mysql_db]`;
+
 CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -36,11 +42,6 @@ CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SQL
-        );
-
-        $this->table = new DbEntity(
-            $GLOBALS['mysql_test_table'],
-            $link
         );
     }
 

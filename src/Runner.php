@@ -44,6 +44,16 @@ class Runner implements RunnerInterface
     }
 
     /**
+     * @param string $script
+     */
+    public function runScript(string $script): void
+    {
+        foreach (array_filter(array_map('trim', explode(";", $script))) as $sql) {
+            $this->runSQL($sql);
+        }
+    }
+
+    /**
      * @param bool|mysqli_result $queryResult
      * @return mixed[][]
      */

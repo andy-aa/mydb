@@ -42,11 +42,4 @@ class RunnerExceptionTest extends TestCase
         );
     }
 
-//    public function testEmptyQuery(): void
-//    {
-//        $this->assertSame(
-//            [],
-//            (new Runner($this->mysqli))->runSQL('')
-//        );
-//    }
 }

@@ -22,32 +22,26 @@ class PropertiesTest extends TestCase
             'password' => $GLOBALS['mysql_pass']
         ]);
 
-        $runner = new Runner($link);
+        $this->table = new DbEntity(
+            $GLOBALS['mysql_test_table'],
+            $link
+        );
 
-        $runner->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;");
-        $runner->runSQL("USE `$GLOBALS[mysql_db]`;");
+        $this->table->runScript(<<<SQL
+CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;
+USE `$GLOBALS[mysql_db]`;
 
-
-        $runner->runSQL(
-            <<<SQL
 CREATE TABLE IF NOT EXISTS `$GLOBALS[mysql_test_table]` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№',
   `name` varchar(50) NOT NULL COMMENT 'Name',
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `$GLOBALS[mysql_test_table]` (`name`, `description`) 
+VALUES ('Alex', 'Manager');
 SQL
         );
-
-        $this->table = new DbEntity(
-            $GLOBALS['mysql_test_table'],
-            $link
-        );
-
-        $this->table->add([
-            'name' => 'Alex',
-            'description' => 'Manager'
-        ]);
     }
 
 

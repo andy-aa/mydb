@@ -23,8 +23,11 @@ class DBTest extends TestCase
 
         $this->runner = new Runner($link);
 
-        $this->runner->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;");
-        $this->runner->runSQL("CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db_2]`;");
+        $this->runner->runScript(<<<SQL
+CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db]`;
+CREATE DATABASE IF NOT EXISTS `$GLOBALS[mysql_db_2]`;
+SQL
+        );
     }
 
     public function testDB(): void
