@@ -1,3 +1,4 @@
+[![Source Code](http://img.shields.io/badge/source-andy--aa/mydb-blue.svg?style=flat-square)](https://github.com/andy-aa/mydb)
 [![Build Status](https://travis-ci.com/andy-aa/mydb.svg?branch=master)](https://travis-ci.com/andy-aa/mydb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg?style=flat-square)](https://php.net/)
