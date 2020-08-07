@@ -19,11 +19,6 @@ class DB implements DBInterface
      */
     private static $instances = [];
 
-//    /**
-//     * @var callable|null
-//     */
-//    private static $errorHandler = null;
-
     /**
      * @var array<string, mixed>
      */
@@ -59,28 +54,6 @@ class DB implements DBInterface
         return $mysqli;
     }
 
-//    /**
-//     * @param mysqli $mysqli
-//     * @return void
-//     */
-//    protected static function errorHandler(mysqli $mysqli)
-//    {
-//        if (is_callable(static::$errorHandler)) {
-//            (static::$errorHandler)($mysqli);
-//        }
-//    }
-
-//    /**
-//     * @param callable|null $errorHandler
-//     * @return void
-//     */
-//    protected static function setErrorHandler(callable $errorHandler = null): void
-//    {
-//        static::$errorHandler = is_callable($errorHandler) ? $errorHandler : function (mysqli $mysqli): void {
-//            throw new Exception("MySql connect error : $mysqli->connect_error", $mysqli->connect_errno);
-//        };
-//    }
-
     /**
      * @param array<string, mixed> $options
      * @param callable|null $errorHandler
@@ -102,9 +75,5 @@ class DB implements DBInterface
         }
 
         return static::$instances[$key];
-
-//        return static::$instances[$key] ?? static::$instances[$key] = static::new(
-//                array_merge(static::DEFAULT_OPTIONS, $options)
-//            );
     }
 }

@@ -87,7 +87,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param callable $errorHandler
-     * @return Runner
+     * @return $this
      */
     public function setErrorHandler($errorHandler)
     {
