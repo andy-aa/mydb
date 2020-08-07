@@ -23,6 +23,19 @@ trait PropertiesTrait
     }
 
     /**
+     * @param string $fieldName
+     * @return mixed[]
+     */
+    public function getColumn(string $fieldName): array
+    {
+        return array_column(
+            $this->get(),
+            $fieldName,
+            $this->getPrimaryKey()
+        );
+    }
+
+    /**
      * @param string $tableName
      * @return string
      */
@@ -42,18 +55,6 @@ trait PropertiesTrait
         );
     }
 
-    /**
-     * @param string $fieldName
-     * @return mixed[]
-     */
-    public function getColumn(string $fieldName): array
-    {
-        return array_column(
-            $this->get(),
-            $fieldName,
-            $this->getPrimaryKey()
-        );
-    }
 
     /**
      * @return mixed[]
@@ -82,6 +83,14 @@ trait PropertiesTrait
     /**
      * @return array<mixed, mixed>
      */
+    public function getColumnsPropertiesWithoutId(): array
+    {
+        return array_diff_key($this->getColumnsProperties(), [$this->getPrimaryKey() => null]);
+    }
+
+    /**
+     * @return array<mixed, mixed>
+     */
     public function getColumnsTypes(): array
     {
         $array = [];
@@ -102,13 +111,5 @@ trait PropertiesTrait
             $array[$row['Field']] = $matches[1];
         }
         return $array;
-    }
-
-    /**
-     * @return array<mixed, mixed>
-     */
-    public function getColumnsPropertiesWithoutId(): array
-    {
-        return array_diff_key($this->getColumnsProperties(), [$this->getPrimaryKey() => null]);
     }
 }
